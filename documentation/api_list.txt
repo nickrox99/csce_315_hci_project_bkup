@@ -1,2 +1,6 @@
 This file contains a running list of the APIs we are researching
 
+
+
+1. Twitter Trending Aggregator (Ryan)
+ 
