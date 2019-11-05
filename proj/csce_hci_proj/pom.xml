@@ -37,6 +37,14 @@
 	    <version>3.5.0</version>
 	</dependency>
 	
+	<!-- https://mvnrepository.com/artifact/org.xwiki.platform/xwiki-platform-wiki-api -->
+	<dependency>
+	    <groupId>org.xwiki.platform</groupId>
+	    <artifactId>xwiki-platform-wiki-api</artifactId>
+	    <version>11.9</version>
+	</dependency>
+	
+	
 	 
   </dependencies>
   <build>
