@@ -59,7 +59,7 @@
         .column {
             float: left;
             padding: 10px;
-            height: 300px;
+            height: 525px;
         }
         /* twitter and facebook box */
         .left, .middle {
@@ -79,6 +79,25 @@
             content: "";
             display: table;
             clear: both;
+        }
+        .h1-twitter-title{
+           text-align: center; 
+        }
+        .h1-facebook-title{
+           text-align: center; 
+        }
+        .h1-additional-information-title{
+           text-align: center; 
+        }
+        .li-trend-list{
+            margin-top: 12%;
+            border: 1px solid black;
+            line-height: 300%;
+            margin-right: 10%;
+            text-align: center;
+        }
+        li:first-child{
+            margin-top: 0;
         }
 
 
@@ -101,13 +120,27 @@
         <!--Twitter Trending, Facebook Trending, & Additional Information --> 
         <div class = "row">
             <div class = "column left" style = "background-color:#aaa;">
-
+                <h1 class = "h1-twitter-title">Twitter Trending</h1>
+                    <ul style="list-style-type:none;">
+                        <li class =  "li-trend-list">Trend 1</li>
+                        <li class =  "li-trend-list">Trend 2</li>
+                        <li class =  "li-trend-list">Trend 3</li>
+                        <li class =  "li-trend-list">Trend 4</li>
+                        <li class =  "li-trend-list">Trend 5</li>
+                    </ul> 
             </div>
             <div class = "column middle" style = "background-color:#aaa;">
-                
+                <h1 class = "h1-facebook-title">Facebook Trending</h1>
+                    <ul style="list-style-type:none;">
+                        <li class =  "li-trend-list">Trend 1</li>
+                        <li class =  "li-trend-list">Trend 2</li>
+                        <li class =  "li-trend-list">Trend 3</li>
+                        <li class =  "li-trend-list">Trend 4</li>
+                        <li class =  "li-trend-list">Trend 5</li>
+                    </ul>
             </div>
             <div class = "column right" style = "background-color:#aaa;">
-                    
+                <h1 class = "h1-additional-information-title">Additional Information</h1>
             </div>
             
         </div>
