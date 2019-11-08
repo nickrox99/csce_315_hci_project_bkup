@@ -2,6 +2,9 @@
 
 <html>
     <style>
+        body {
+            margin:0;
+        }
         /* Style the search bar and make it bigger */
         input#search-bar{
             margin: 0 auto;
@@ -56,6 +59,9 @@
         .topnav {
             background-color: #333;
             overflow: hidden;
+            position: relative;
+            top: -40px;
+
         }
 
         /* Style the links inside the navigation bar */
@@ -96,16 +102,33 @@
             color: #f2f2f2;
         }
 
+        .div-title {
+            position: relative;
+            margin: 0 auto;
+            width: 100%;
+            top: -40px;
+            height: 80px;
+            background-color: black;
+           
+        }
+
+        .p-title{
+            font-size: 40px;
+            text-align: center;
+            color: #f2f2f2;
+            padding: 0 20px;
+        }
 
     </style>
     
     <body>
         <!--Title Area --> 
-        <div class = "title">
-            
+        <div class = "div-title">
+            <p class = "p-title">Home Page Title</p>
         </div>
         <!--Navigation bar --> 
         <div class="topnav">
+            <a class="active" href="home.html">Home</a>
             <a href="trending.html">Trending</a>
             <a href="news.html">News</a>
             <a href="sports.html">Sports</a>
