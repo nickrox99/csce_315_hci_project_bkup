@@ -55,6 +55,32 @@
             background-color: #4CAF50;
             color: white;
         }
+    
+        .column {
+            float: left;
+            padding: 10px;
+            height: 300px;
+        }
+        /* twitter and facebook box */
+        .left, .middle {
+            width: 22%;
+            margin-left: 3%;
+            margin-left: 3%;
+
+        }
+        /* additional information box */
+        .right{
+            width: 40%;
+            margin-left: 3%;
+            margin-left: 3%;
+        }
+        /* Clear floats after the columns */
+            .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
 
     </style>
     
@@ -71,6 +97,19 @@
             <a href="sports.html">Sports</a>
             <a href="finance.html">Finance</a>
             <a href="about-us.html">About Us</a>
+        </div>
+        <!--Twitter Trending, Facebook Trending, & Additional Information --> 
+        <div class = "row">
+            <div class = "column left" style = "background-color:#aaa;">
+
+            </div>
+            <div class = "column middle" style = "background-color:#aaa;">
+                
+            </div>
+            <div class = "column right" style = "background-color:#aaa;">
+                    
+            </div>
+            
         </div>
     </body>
 </html>
