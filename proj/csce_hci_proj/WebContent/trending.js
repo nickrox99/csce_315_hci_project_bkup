@@ -9,7 +9,9 @@ window.onload = (function(){
         conversation : 'none',    // or all
         cards        : 'hidden',  // or visible 
         linkColor    : '#cc0000', // default is blue
-        theme        : 'light'    // or dark
+        theme        : 'dark', 
+        alight       : 'center',
+           // or dark
       })
     .then (function (el) {
       el.contentDocument.querySelector(".footer").style.display = "none";
@@ -40,3 +42,17 @@ window.onload = (function(){
   {
       // load Wikipedia data
   }
+
+  twttr.widgets.createTimeline(
+    {
+      sourceType: "profile",
+      screenName: "jack"
+    },
+    document.getElementById("tweetTimeline"),
+    {
+      height: "inherit",
+      chrome: "nofooter",
+      linkColor: "#820bbb",
+      borderColor: "#a80000"
+    }
+  );
