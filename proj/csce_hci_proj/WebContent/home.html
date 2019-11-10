@@ -20,12 +20,17 @@
         <a href="finance.html">Finance</a>
         <a href="about-us.html">About Us</a>
     </div>
+    
     <!--Search bar -->
     <div class="div-search-bar">
-        <form class="search-container">
-            <input type="text" id="search_field" placeholder="Search a Person or Company">
-            <a href="#"><img class="search-icon"
-                    src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"></a>
+        <form id='search_form'>
+            <div class='form-user_search'>
+                <label  id='searchLable' for='searchField'>Please enter desired search: </label>
+                <input size="300" id='search_field' type='text'></input>
+            </div>
+            <div class='form-sub'>
+                <button id='submit_button' type='button'>Submit</button>
+            </div>
         </form>
 
     </div>
