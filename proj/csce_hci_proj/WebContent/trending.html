@@ -30,7 +30,7 @@
                 <li class="li-trend-list" id="tweet" tweetID="03" onclick="loadWiki()"></li>
                 <li class="li-trend-list" id="tweet" tweetID="4" onclick="loadWiki()"></li>
                 <li class="li-trend-list" id="tweet" tweetID="458943759" onclick="loadWiki()"></li>
-                <li class="li-trend-list" id="tweetTimeline"  onclick="loadWiki()"></li>
+                <li class="li-trend-list" id="tweetTimeline" onclick="loadWiki()"></li>
             </ul>
         </div>
         <!--Facebook Trending-->
@@ -69,6 +69,17 @@
     </div>
     <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     <script type="text/javascript" src="trending.js"></script>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: 'your-app-id',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v5.0'
+            });
+        };
+    </script>
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
 </body>
 
 </html>
