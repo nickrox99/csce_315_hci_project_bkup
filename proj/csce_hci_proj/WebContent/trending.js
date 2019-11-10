@@ -35,3 +35,8 @@ window.onload = (function(){
     return data.query.results.json.items_html;
     
   }
+
+  function loadWiki()
+  {
+      // load Wikipedia data
+  }
