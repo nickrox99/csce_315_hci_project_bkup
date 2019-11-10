@@ -1,3 +1,6 @@
+var result = "";
+var previousResult = "";
+
 window.onload = (function(){
 
     var tweet = document.getElementById("tweet");
@@ -38,6 +41,14 @@ window.onload = (function(){
     
   }
 
+  function getUserSearch()
+  {
+      // get the user search from the homepage and put it in the globle variable
+      var searchInput = document.getElementById('search_field').nodeValue;
+      result = searchInput;
+
+  }
+
   function loadWiki()
   {
       // load Wikipedia data
@@ -50,7 +61,7 @@ window.onload = (function(){
     },
     document.getElementById("tweetTimeline"),
     {
-      height: "inherit",
+      height: "auto",
       chrome: "nofooter",
       linkColor: "#820bbb",
       borderColor: "#a80000"
