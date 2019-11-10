@@ -41,12 +41,10 @@ window.onload = (function(){
     
   }
 
-  function getUserSearch()
+  function getNewSearchResult()
   {
-      // get the user search from the homepage and put it in the globle variable
-      var searchInput = document.getElementById('search_field').nodeValue;
-      result = searchInput;
-
+      previousResult = result;
+      result = localStorage.getItem('submit_result', result);
   }
 
   function loadWiki()
