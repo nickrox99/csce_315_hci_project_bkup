@@ -13,6 +13,7 @@
   "author": "Nick Cashioa",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "twitter-node-client": "0.0.6"
   }
 }
