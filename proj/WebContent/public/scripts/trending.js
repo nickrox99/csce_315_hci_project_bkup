@@ -1,5 +1,6 @@
 var result = "";
 var previousResult = "";
+var Twitter = require('twitter-node-client').Twitter;
 
 // user defined Tweet class
 class Tweet {
@@ -10,6 +11,22 @@ class Tweet {
     }
 
 }
+
+function fetchTweets(q) {
+
+    // Test the URL in YQL console to make sure it works
+    var url  =  "https://api.twitter.com/1.1/trends/place.json?id=1;"
+
+     // Make synchronous AJAX request to yql
+    var tweets = jQuery.ajax({type: "GET", url: url, dataType: 'json', async: false }).responseText;
+
+    // Parse the JSON response
+    var data = JSON.parse(tweets);
+
+    // Return the HTML search results
+    return data.query.results.json.items_html;
+
+  }
 
 class Tweet_List {
     constructor() {
