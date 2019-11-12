@@ -187,6 +187,7 @@ function loadWiki() {
           console.log(data);    
     }
     var context = '${wiki[1][1]\n\n${wiki[2][1]}';
+    console.log(context);
     document.getElementById("wiki_summary").innerHTML = context;
 
 }
