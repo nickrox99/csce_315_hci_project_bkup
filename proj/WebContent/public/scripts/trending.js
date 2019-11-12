@@ -183,21 +183,20 @@ function loadWiki() {
 
     for (var i = 0; i < wiki[1].length; i++) {
        // var data = `You searched for ${wiki[1][i]}: And these are the details — ${wiki[2][i]} Follow this link to read more — ${wiki[3][i]}'  + “\n”;
-      //console.log(data);    
+      //    console.log(data);    
     }
+
 }
 
 function showDate() {
-    n = new Date();
-    y = n.getFullYear();
-    m = n.getMonth() + 1;
-    d = n.getDate();
+    var d = new Date();
+    var n = d.toDateString();
+    document.getElementById("date").innerHTML = n;
 
 }
 
 window.onload = (function () {
-
-    //
+    `   `
     var tweet = document.getElementById("tweet");
     var tweet_id = tweet.getAttribute("tweetID");
 
