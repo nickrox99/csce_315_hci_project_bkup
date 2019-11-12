@@ -1,24 +1,22 @@
 var result = "";
 var previousResult = "";
-var Twitter = require('twitter-node-client').Twitter;
 
-// user defined Tweet class
+/* // user defined Tweet class
 class Tweet {
     // constructor
     constructor(TWEET_ID) {
         this.TWEET_ID = TWEET_ID;
         this.next = null
     }
-
-}
-
+ */ 
+/* 
 function fetchTweets(q) {
 
     // Test the URL in YQL console to make sure it works
-    var url  =  "https://api.twitter.com/1.1/trends/place.json?id=1;"
+    var url = "https://api.twitter.com/1.1/trends/place.json?id=1;"
 
-     // Make synchronous AJAX request to yql
-    var tweets = jQuery.ajax({type: "GET", url: url, dataType: 'json', async: false }).responseText;
+    // Make synchronous AJAX request to yql
+    var tweets = jQuery.ajax({ type: "GET", url: url, dataType: 'json', async: false }).responseText;
 
     // Parse the JSON response
     var data = JSON.parse(tweets);
@@ -26,9 +24,9 @@ function fetchTweets(q) {
     // Return the HTML search results
     return data.query.results.json.items_html;
 
-  }
+} */
 
-class Tweet_List {
+/* class Tweet_List {
     constructor() {
         this.head = null;
         this.size = 0;
@@ -106,7 +104,7 @@ class Tweet_List {
             // comparing element with current 
             // element if found then remove the 
             // and return true 
-            if (current.element == = twt) {
+            if (current.element == twt) {
                 if (prev == null) {
                     this.head = current.next;
                 } else {
@@ -136,20 +134,7 @@ class Tweet_List {
         console.log(str);
     }
 }
-
-window.onload = (function () {
-
-    //
-    var tweet = document.getElementById("tweet");
-    var tweet_id = tweet.getAttribute("tweetID");
-
-    getNewSearchResult();
-
-    loadPage();
-
-    console.log("result: " + result);
-    console.log("previousResult: " + previousResult);
-});
+ */
 
 
 
@@ -159,7 +144,7 @@ function getNewSearchResult() {
 }
 
 function loadPage() {
-    if (results != null) {
+    if (result != null) {
         // load based off the user search
     }
     var sourceT = "profile";
@@ -185,3 +170,26 @@ function loadWiki() {
     // load Wikipedia data
 }
 
+function showDate() {
+    n = new Date();
+    y = n.getFullYear();
+    m = n.getMonth() + 1;
+    d = n.getDate();
+        
+   }
+
+window.onload = (function () {
+
+    //
+    var tweet = document.getElementById("tweet");
+    var tweet_id = tweet.getAttribute("tweetID");
+
+    getNewSearchResult();
+
+    loadPage();
+    showDate();
+    loadWiki();
+
+    console.log("result: " + result);
+    console.log("previousResult: " + previousResult);
+});
