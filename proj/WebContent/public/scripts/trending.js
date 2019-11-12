@@ -8,7 +8,7 @@ class Tweet {
         this.TWEET_ID = TWEET_ID;
         this.next = null
     }
- */ 
+ */
 /* 
 function fetchTweets(q) {
 
@@ -168,6 +168,16 @@ twttr.widgets.createTimeline(
 
 function loadWiki() {
     // load Wikipedia data
+    var query = "english";
+    var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="+ ${query} + "&format=json';
+    request(url, function (err, response, body) {
+        if (err) {
+            var error = "cannot connect to the server";
+            console.log(error);
+        } else {
+            console.log("body: ", body);
+        }
+    });
 }
 
 function showDate() {
@@ -175,8 +185,8 @@ function showDate() {
     y = n.getFullYear();
     m = n.getMonth() + 1;
     d = n.getDate();
-        
-   }
+
+}
 
 window.onload = (function () {
 
