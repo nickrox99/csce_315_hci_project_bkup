@@ -168,7 +168,8 @@ twttr.widgets.createTimeline(
 
 function loadWiki() {
     // load Wikipedia data
-    var query = result;
+    //var query = result;
+    var query = "english";
     var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="+ ${query} + "&format=json';
     request(url, function (err, response, body) {
         if (err) {
@@ -182,9 +183,11 @@ function loadWiki() {
     var wiki = JSON.parse(body);
 
     for (var i = 0; i < wiki[1].length; i++) {
-       // var data = `You searched for ${wiki[1][i]}: And these are the details — ${wiki[2][i]} Follow this link to read more — ${wiki[3][i]}'  + “\n”;
-      //    console.log(data);    
+       var data = 'You searched for ${wiki[1][i]}: And these are the details — ${wiki[2][i]} Follow this link to read more — ${wiki[3][i]}'  + "\n";
+          console.log(data);    
     }
+    var context = '${wiki[1][1]\n\n${wiki[2][1]}';
+    document.getElementById("wiki_summary").innerHTML = context;
 
 }
 
