@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "request": "^2.88.0",
     "require": "^2.4.20",
+    "requirejs": "^2.3.6",
     "twitter-node-client": "0.0.6"
   }
 }

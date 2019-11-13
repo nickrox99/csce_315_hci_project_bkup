@@ -1,6 +1,9 @@
 var result = "";
 var previousResult = "";
 
+
+
+
 /* // user defined Tweet class
 class Tweet {
     // constructor
@@ -143,6 +146,33 @@ function getNewSearchResult() {
     result = localStorage.getItem('submit_result', result);
 }
 
+function loadWiki() {
+
+    // load Wikipedia data
+    //var query = result;
+    var request = new XMLHttpRequest();
+    var query = "english";
+    var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="+ ${query} + "&format=json';
+    request.open('GET', url, true);
+    request.onload = function () {
+        // access JSON data
+        var data = JSON.parse(this.response)
+
+        if (request.status >= 200 && request.status < 400) {
+            data.forEach(text => {
+                console.log(text)
+            })
+        } else {
+            console.log('error')
+        }
+    }
+
+request.send();
+
+// document.getElementById("wiki_summary").innerHTML = context;
+
+}
+
 function loadPage() {
     if (result != null) {
         // load based off the user search
@@ -166,31 +196,7 @@ twttr.widgets.createTimeline(
     }
 );
 
-function loadWiki() {
-    // load Wikipedia data
-    //var query = result;
-    var query = "english";
-    var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="+ ${query} + "&format=json';
-    request(url, function (err, response, body) {
-        if (err) {
-            var error = "cannot connect to the server";
-            console.log(error);
-        } else {
-            console.log("body: ", body);
-        }
-    });
 
-    var wiki = JSON.parse(body);
-
-    for (var i = 0; i < wiki[1].length; i++) {
-       var data = 'You searched for ${wiki[1][i]}: And these are the details — ${wiki[2][i]} Follow this link to read more — ${wiki[3][i]}'  + "\n";
-          console.log(data);    
-    }
-    var context = '${wiki[1][1]\n\n${wiki[2][1]}';
-    console.log(context);
-    document.getElementById("wiki_summary").innerHTML = context;
-
-}
 
 function showDate() {
     var d = new Date();
