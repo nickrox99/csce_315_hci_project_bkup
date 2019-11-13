@@ -14,7 +14,7 @@ function loadWiki() {
     //var query = result;
     var request = new XMLHttpRequest();
     var query = "english";
-    var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="+ ${query} + "&format=json + &origin=*';
+    var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="+ english + "&format=json&callback=?&origin=*';
     request.open('GET', url, true);
     request.onload = function () {
 
@@ -33,6 +33,8 @@ function loadWiki() {
     }
 
 request.send();
+
+
 
 // document.getElementById("wiki_summary").innerHTML = context;
 
