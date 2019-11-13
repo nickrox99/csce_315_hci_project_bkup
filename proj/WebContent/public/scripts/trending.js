@@ -15,7 +15,11 @@ function loadWiki() {
     var request = new XMLHttpRequest();
     
     var query = "english";
+<<<<<<< HEAD
     var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="+ ${query} + "&format=json&origin=*"';
+=======
+    var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="+ english + "&format=json&callback=?&origin=*';
+>>>>>>> refs/remotes/origin/master
     request.open('GET', url, true);
 
     request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
@@ -36,6 +40,8 @@ function loadWiki() {
     }
 
     request.send();
+
+
 
 
 
