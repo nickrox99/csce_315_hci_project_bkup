@@ -182,19 +182,7 @@ function loadPage() {
     // load a default shell
 }
 
-twttr.widgets.createTimeline(
-    {
-        sourceType: "profile",
-        screenName: "jack"
-    },
-    document.getElementById("tweetTimeline"),
-    {
-        height: "auto",
-        chrome: "nofooter",
-        linkColor: "#820bbb",
-        borderColor: "#a80000"
-    }
-);
+
 
 
 
@@ -215,6 +203,20 @@ window.onload = (function () {
     loadPage();
     showDate();
     loadWiki();
+
+    twttr.widgets.createTimeline(
+        {
+            sourceType: "profile",
+            screenName: "jack"
+        },
+        document.getElementById("tweetTimeline"),
+        {
+            height: "auto",
+            chrome: "nofooter",
+            linkColor: "#820bbb",
+            borderColor: "#a80000"
+        }
+    );
 
     console.log("result: " + result);
     console.log("previousResult: " + previousResult);
