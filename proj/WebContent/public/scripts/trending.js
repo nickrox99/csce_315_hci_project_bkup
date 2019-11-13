@@ -206,7 +206,7 @@ function showDate() {
 }
 
 window.onload = (function () {
-    `   `
+    
     var tweet = document.getElementById("tweet");
     var tweet_id = tweet.getAttribute("tweetID");
 
