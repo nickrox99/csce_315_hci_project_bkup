@@ -1,4 +1,4 @@
-var result = "";
+var result = localStorage.getItem('submit_result', result);;
 var previousResult = "";
 
 
@@ -10,19 +10,14 @@ function getNewSearchResult() {
 function loadWiki() {
 
     console.log("loadWiki() started in trending.js");
-    // load Wikipedia data
-    //var query = result;
     var request = new XMLHttpRequest();
     
     var query = "english";
-<<<<<<< HEAD
-    var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="+ ${query} + "&format=json&origin=*"';
-=======
     var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="+ english + "&format=json&callback=?&origin=*';
->>>>>>> refs/remotes/origin/master
     request.open('GET', url, true);
 
     request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+
     request.onload = function () {
 
         // access JSON data
@@ -38,12 +33,39 @@ function loadWiki() {
             console.log('error')
         }
     }
-
     request.send();
 
+// document.getElementById("wiki_summary").innerHTML = context;
 
+}
 
+function loadTwitter() {
 
+    console.log("loadTwitter() started in trending.js");
+    var request = new XMLHttpRequest();
+    
+    var query = "english";
+    var url = '"&format=json&callback=?&origin=*';
+    request.open('GET', url, true);
+
+    request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+
+    request.onload = function () {
+
+        // access JSON data
+        //var data = JSON.parse(request.responseText)
+
+        console.log(request.response);
+
+        if (request.status >= 200 && request.status < 400) {
+            data.forEach(text => {
+                console.log(text)
+            })
+        } else {
+            console.log('error')
+        }
+    }
+    request.send();
 
 // document.getElementById("wiki_summary").innerHTML = context;
 
