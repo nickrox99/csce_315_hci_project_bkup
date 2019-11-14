@@ -1,6 +1,10 @@
 function loadFinanceInfo(){
     
+<<<<<<< HEAD
     console.log("loadFinaceInfo() started in About-us.js");
+=======
+    console.log("loadFinanceInfo() started in finance.js");
+>>>>>>> 9c3a3bbacbf993d2fbe6ef3ea00a54ffbfe9c465
     
     var apiKey = '0SE9COWFX0MGZGAE';
     var funtion = 'TIME_SERIES_DAILY';
