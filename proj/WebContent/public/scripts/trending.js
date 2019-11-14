@@ -1,4 +1,3 @@
-//var result = localStorage.getItem('search_result', result);
 var result = "";
 var previousResult = "";
 
@@ -14,9 +13,9 @@ function loadWiki() {
 
     console.log("loadWiki() started in trending.js");
     var request = new XMLHttpRequest();
-    
+
     var query = result;
-    var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="'+ result + '&format=json&callback=?&origin=*';
+    var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="' + result + '&format=json&callback=?&origin=*';
     request.open('GET', url, true);
 
     request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
@@ -27,23 +26,14 @@ function loadWiki() {
         //var data = JSON.parse(request.responseText)
 
         console.log(request.response);
-
-        if (request.status >= 200 && request.status < 400) {
-            data.forEach(text => {
-                console.log(text)
-            })
-        } else {
-            console.log('error')
-        }
     }
     request.send();
 
-// document.getElementById("wiki_summary").innerHTML = context;
+    // document.getElementById("wiki_summary").innerHTML = context;
 
 }
 
-function loadTwitter() 
-{
+function loadTwitter() {
 
     /** Twitter API Authorization parameters 
     * Parameters: https://developer.twitter.com/en/docs/basics/authentication/guides/authorizing-a-request
@@ -59,7 +49,7 @@ function loadTwitter()
 
     console.log("loadTwitter() started in trending.js");
     var request = new XMLHttpRequest();
-    
+
     var query = result;
     var url = '"&format=json&callback=?&origin=*';
     request.open('GET', url, true);
@@ -83,17 +73,51 @@ function loadTwitter()
     }
     request.send();
 
-// document.getElementById("wiki_summary").innerHTML = context;
+    // document.getElementById("wiki_summary").innerHTML = context;
 
 }
 
-function loadPage() {
+function loadTwitterTimeline() {
+
+    var sourceT;
+    var screenN
     if (result != null) {
         // load based off the user search
+        sourceT = "profile";
+        screenN = result;
+
+        // loads a specific user's tweet timeline
+        twttr.widgets.createTimeline(
+            {
+                sourceType: "profile",
+                screenName: screenN
+           },
+            document.getElementById("tweetTimeline"),
+            {
+                height: "auto",
+                chrome: "nofooter",
+                linkColor: "#820bbb",
+                borderColor: "#a80000"
+            }
+        );
     }
-    var sourceT = "profile";
-    var screenN = "jack";
-    // load a default shell
+    else {
+        // loads a specific user's tweet timeline
+        twttr.widgets.createTimeline(
+            {
+                sourceType: "profile",
+                screenName: "jack"
+            },
+            document.getElementById("tweetTimeline"),
+            {
+                height: "auto",
+                chrome: "nofooter",
+                linkColor: "#820bbb",
+                borderColor: "#a80000"
+            }
+        );
+        // load a default shell
+    }
 }
 
 
@@ -105,15 +129,14 @@ function showDate() {
 }
 
 window.onload = (function () {
-    
+
     var tweet = document.getElementById("tweet");
     var tweet_id = tweet.getAttribute("tweetID");
 
     // not working properly
     getNewSearchResult();
 
-    // load page shoiuld work
-    loadPage();
+
 
     // show date works
     showDate();
@@ -121,20 +144,10 @@ window.onload = (function () {
     // load wiki currently prints JSON to the console, we need to parse and display this
     loadWiki();
 
-    // loads a specific user's tweet timeline
-    twttr.widgets.createTimeline(
-        {
-            sourceType: "profile",
-            screenName: "jack"
-        },
-        document.getElementById("tweetTimeline"),
-        {
-            height: "auto",
-            chrome: "nofooter",
-            linkColor: "#820bbb",
-            borderColor: "#a80000"
-        }
-    );
+
+    // load page shoiuld work
+    loadTwitterTimeline();
+
 
     console.log("result: " + result);
     console.log("previousResult: " + previousResult);
