@@ -16,11 +16,13 @@ function loadFinanceInfo(){
     
     console.log("loadFinanceInfo() started in finance.js");
     
-    var symbolStock = 'AMZN';
+    var symbol = 'AMZN'; //test with BTC for currency
+
     var apiKey = '0SE9COWFX0MGZGAE';
-    var funtionStocks = 'TIME_SERIES_DAILY';
+
+    var functionStocks = 'TIME_SERIES_DAILY';
     var interval = '1min';
-    var urlStocks = 'https://www.alphavantage.co/query?function=' + funtionStocks + '&symbol=' + symbolStock + '&interval=' + interval + '&apikey=' + apiKey; 
+    var urlStocks = 'https://www.alphavantage.co/query?function=' + functionStocks + '&symbol=' + symbol + '&interval=' + interval + '&apikey=' + apiKey; 
 
     // jQuery.ajax({
     //     url: urlStocks,
@@ -47,10 +49,9 @@ function loadFinanceInfo(){
     //     }
     // });
 
-    var symbol = 'BTC';
-    var funtionCrypto = 'DIGITAL_CURRENCY_WEEKLY';
+    var functionCrypto = 'DIGITAL_CURRENCY_WEEKLY';
     var market = 'USD';
-    var urlCrypto = 'https://www.alphavantage.co/query?function=' + funtionCrypto + '&symbol=' + symbol + '&market=' + market + '&apikey=' + apiKey; 
+    var urlCrypto = 'https://www.alphavantage.co/query?function=' + functionCrypto + '&symbol=' + symbol + '&market=' + market + '&apikey=' + apiKey; 
 
     jQuery.ajax({
         url: urlCrypto,
@@ -74,8 +75,23 @@ function loadFinanceInfo(){
             console.log('High: $' + high);
             console.log('Low: $' + low);
             console.log('Close: $' + close);
-          
-         
+        }
+    });
+    
+}
+
+function symbolSearch() {
+
+    var apiKey = '0SE9COWFX0MGZGAE';
+    var keyword = 'microsoft';
+    var urlSearch = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=' + keyword  + '&apikey=' + apiKey;
+    
+    jQuery.ajax({
+        url: urlSearch,
+        dataType: 'json',
+        contentType: "application/json",
+        success: function(data){
+            console.log(data);
         }
     });
     
@@ -84,9 +100,14 @@ function loadFinanceInfo(){
 window.onload = (function () {
    
     // load the finance info
-    loadFinanceInfo();
+    //loadFinanceInfo();
+
     // get the search results from local storage
     getNewSearchResult();
+
+    // symbol search
+    symbolSearch()
+
 
 
     console.log("result: " + result);
