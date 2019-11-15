@@ -1,3 +1,17 @@
+//var result = localStorage.getItem('search_result', result);
+var result = "";
+var previousResult = "";
+
+
+function getNewSearchResult() {
+
+    console.log("getNewSearchResult() started in finance.js")
+
+    // get the latest search results
+    previousResult = result;
+    result = localStorage.getItem('search_result', result);
+}
+
 function loadFinanceInfo(){
     
     console.log("loadFinanceInfo() started in finance.js");
@@ -69,6 +83,13 @@ function loadFinanceInfo(){
 
 window.onload = (function () {
    
+    // load the finance info
     loadFinanceInfo();
+    // get the search results from local storage
+    getNewSearchResult();
+
+
+    console.log("result: " + result);
+    console.log("previousResult: " + previousResult);
     
 });
