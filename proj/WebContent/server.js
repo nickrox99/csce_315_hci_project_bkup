@@ -14,3 +14,9 @@ function loadTwitter()
 {
     console.log("loadTwitter() in server.js called");
 }
+
+
+var Sentiment = require('sentiment');
+var sentiment = new Sentiment();
+var result = sentiment.analyze('')
+console.dir(result);
