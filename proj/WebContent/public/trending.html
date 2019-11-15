@@ -6,6 +6,19 @@
 </head>
 
 <body>
+    <!-- Facebook API init-->
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '424606181825598',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v5.0'
+            });
+        };
+    </script>
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+
     <!--Title Area -->
     <div class="div-title">
         <p class="p-title">Trending</p>
@@ -72,7 +85,7 @@
 
     <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     <script type="text/javascript" src="./scripts/trending.js"></script>
-    
+
     <!--
     <script>
         window.fbAsyncInit = function () {
