@@ -51,6 +51,14 @@
         background-color: DodgerBlue !important;
         color: #ffffff;
         }
+        .right {
+            position: relative;
+            left: 200px;
+            top: -103px;
+        }
+        .left {
+            position: relative;
+        }
     </style>
 
     <body>
@@ -61,6 +69,18 @@
             </div>
             <input type="submit">
         </form>
+        <h1 class="h3-additional-API">Company Name</h1>
+        <h2 id = "price"> </h2>
+        <p id = "disclamer">Disclamer: </p>
+            <img class = "Stock-Graph" src="5.PNG" alt="Stock Graph" height="200" width="275">
+            <div class = "left">
+                <p id = "open" ></p>
+                <p id = "prev" ></p>
+                <p id = "high" ></p>
+                <p id = "low" ></p>
+                <p id = "change" ></p>
+                <p id = "changePercent" ></p>  
+            </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="./scripts/finance.js"></script>

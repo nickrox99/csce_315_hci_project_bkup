@@ -16,49 +16,43 @@ function loadFinanceInfo(){
     
     console.log("loadFinanceInfo() started in finance.js");
     
-    var symbol = 'AMZN'; //test with BTC for currency
-
+    // URL Request
+    var symbol = 'GOOG'; 
     var apiKey = '0SE9COWFX0MGZGAE';
-    var functionStockDaily = 'GLOBAL_QUOTE';
+    var functionStockGeneral = 'GLOBAL_QUOTE';
     var interval = '1min';
-    var urlStocks = 'https://www.alphavantage.co/query?function=' + functionStockDaily + '&symbol=' + symbol + '&interval=' + interval + '&apikey=' + apiKey; 
-
-
-    var open = '';
-    var high = '';
-    var low = '';
-    var price = '';
-    var latestTradingDay = '';
-    var previousClose = '';
-    var change = '';
-    var changePercent = '';
-
-    var yearHigh = '';
-    var yearLow = '';
+    var urlStocks = 'https://www.alphavantage.co/query?function=' + functionStockGeneral + '&symbol=' + symbol + '&interval=' + interval + '&apikey=' + apiKey;
 
     jQuery.ajax({
         url: urlStocks,
         dataType: 'json',
         contentType: "application/json",
         success: function(data){
-            console.log(data);
+          
+            var latestTradingDay = data['Global Quote']['07. latest trading day'];
+            document.getElementById("disclamer").innerHTML = 'Disclamer: '+ latestTradingDay;
 
-          
-            latestTradingDay = data['Global Quote']['07. latest trading day'];
-            console.log(latestTradingDay);
-            open = data['Global Quote']['02. open'];
-            console.log("Open: " + open);
-            high = data['Global Quote']['03. high'];
-            console.log("High: " + high);
-            low = data['Global Quote']['04. low'];
-            console.log("Low: " + low);
-            price = data['Global Quote']['05. price'];
-            console.log("Close: " + price);
-            change = data['Global Quote']['09. change'];
-            console.log("Change: " + change);
-            changePercent = data['Global Quote']['10. change percent'];
-            console.log("Change Percent: " + changePercent);
-          
+            var open = data['Global Quote']['02. open'];
+            document.getElementById("open").innerHTML = 'Open: $'+ open;
+
+            var high = data['Global Quote']['03. high'];
+            document.getElementById("high").innerHTML = 'High: $'+ high;
+
+            var low = data['Global Quote']['04. low'];
+            document.getElementById("low").innerHTML = 'Low: $'+ high;
+
+            var price = data['Global Quote']['05. price'];
+            document.getElementById("price").innerHTML = '$'+ price;
+
+            var previousClose = data['Global Quote']['08. previous close'];
+            document.getElementById("prev").innerHTML = 'Prev Close: $'+ price;
+            
+            var change = data['Global Quote']['09. change'];
+            document.getElementById("change").innerHTML = 'Change: $'+ change;
+            
+            var changePercent = data['Global Quote']['10. change percent'];
+            document.getElementById("changePercent").innerHTML = 'Change Percent: '+ changePercent;
+            
         }
 
     });
