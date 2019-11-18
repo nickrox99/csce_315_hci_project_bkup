@@ -91,20 +91,22 @@ function loadFinanceInfo(){
 }
 
 //add listener function
-function symbolSearch() {
+function autoComplete() {
 
     var apiKey = '0SE9COWFX0MGZGAE';
-    var keyword = 'microsoft';
+    var keyword = document.getElementById("myInput").value;
     var urlSearch = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=' + keyword  + '&apikey=' + apiKey;
     
-    jQuery.ajax({
-        url: urlSearch,
-        dataType: 'json',
-        contentType: "application/json",
-        success: function(data){
-            console.log(data);
-        }
-    });
+    // jQuery.ajax({
+    //     url: urlSearch,
+    //     dataType: 'json',
+    //     contentType: "application/json",
+    //     success: function(data){
+    //         console.log(data);
+
+    //     }
+    // });
+
     
 }
 
@@ -114,10 +116,10 @@ window.onload = (function () {
     loadFinanceInfo();
 
     // get the search results from local storage
-    //getNewSearchResult();
+    getNewSearchResult();
 
     // symbol search
-    //symbolSearch()
+    document.getElementById("myInput").addEventListener("input", autoComplete, false);
 
 
 
