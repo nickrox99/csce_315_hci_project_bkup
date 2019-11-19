@@ -1,6 +1,16 @@
 var result = "";
 var previousResult = "";
 
+// Facebook API looks for this function on load
+window.fbAsyncInit = function () {
+    //FB JavaScript SDK configuration and setup
+    FB.init({
+        appId: '1234567890', //FB App ID
+        cookie: true,  //enable cookies to allow the server to access the session
+        xfbml: true,  //parse social plugins on this page
+        version: 'v3.2' //use this graph api version 3.2
+    });
+}
 
 function getNewSearchResult() {
 
