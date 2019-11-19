@@ -92,11 +92,11 @@ function loadFinanceInfo(){
 
 
 function getListForAutocomple() {
-
     var apiKey = '0SE9COWFX0MGZGAE';
     var keyword = document.getElementById("myInput").value;
     var urlSearch = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=' + keyword  + '&apikey=' + apiKey;
     
+    // Sends the a string of a Company or Ticker Symbol to API and returns the 4 most popular results
     jQuery.ajax({
         url: urlSearch,
         dataType: 'json',
@@ -109,13 +109,8 @@ function getListForAutocomple() {
                 data['bestMatches']['2']['1. symbol'] + " | " + data['bestMatches']['2']['2. name'],
                 data['bestMatches']['3']['1. symbol'] + " | " + data['bestMatches']['3']['2. name']
             ];
-            var iterator = list.values();
-            console.log(iterator.next().value);
-            console.log(iterator.next().value);
-            console.log(iterator.next().value);
-            console.log(iterator.next().value);
-
-            //autocomplete(document.getElementById("myInput"), list);
+            //Sends input return from API and adding it to the webpage
+            autocomplete(document.getElementById("myInput"), list);
     
         }
     });
@@ -140,13 +135,9 @@ function autocomplete(inp, arr) {
         this.parentNode.appendChild(a);
         /*for each item in the array...*/
         for (i = 0; i < arr.length; i++) {
-          /*check if the item starts with the same letters as the text field value:*/
-          if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
             /*create a DIV element for each matching element:*/
             b = document.createElement("DIV");
-            /*make the matching letters bold:*/
-            b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-            b.innerHTML += arr[i].substr(val.length);
+            b.innerHTML =  arr[i] + "</strong>";
             /*insert a input field that will hold the current array item's value:*/
             b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
             /*execute a function when someone clicks on the item value (DIV element):*/
@@ -158,7 +149,6 @@ function autocomplete(inp, arr) {
                 closeAllLists();
             });
             a.appendChild(b);
-          }
         }
     });
     /*execute a function presses a key on the keyboard:*/
