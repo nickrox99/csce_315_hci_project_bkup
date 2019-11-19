@@ -208,17 +208,34 @@ function autocomplete(inp, arr) {
   });
 }
 
+function createStockChart(){
+
+}
+
+function setCompanyNameAndTickerSymbol(){
+    // get text from textbox
+    var userInput = document.getElementById("myInput").value;
+    // split the text into symbol and company name
+    var userInputSplit = userInput.split(" | ");
+    var tickerSymbol = userInputSplit[0];
+    var companyName = userInputSplit[1];
+
+    //display on the webpage
+    document.getElementById("name").innerHTML = companyName + ' (' + tickerSymbol + ")"
+}
+function displayChartAndFinanceInfo(){
+    //loadFinanceInfo();
+    //createStockChart();
+    setCompanyNameAndTickerSymbol();
+}
 window.onload = (function () {
-   
-    // load the finance info
-    loadFinanceInfo();
 
     // get the search results from local storage
     //getNewSearchResult();
 
     // get Top 4 symbols for each keystroke and display on search bar
-    document.getElementById("myInput").addEventListener("input", getListForAutocomple, false);
-    
+    // This funtion activly changes when the user types
+    //document.getElementById("myInput").addEventListener("input", getListForAutocomple, false);
 
     console.log("result: " + result);
     console.log("previousResult: " + previousResult);

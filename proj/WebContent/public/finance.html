@@ -63,16 +63,17 @@
 
     <body>
         <!--Make sure the form has the autocomplete function switched off:-->
-        <form autocomplete="off" action="/action_page.php">
+        <form autocomplete="off" action="javascript:displayChartAndFinanceInfo();">
             <div class="autocomplete" style="width:300px;">
             <input id="myInput" type="text" name="myCountry" placeholder="Type a Company">
             </div>
             <input type="submit">
         </form>
-        <h1 class="h3-additional-API">Company Name</h1>
+
+        <h1 id = "name" class="h3-additional-API"></h1>
         <h2 id = "price"> </h2>
         <p id = "disclamer">Disclamer: </p>
-            <img class = "Stock-Graph" src="5.PNG" alt="Stock Graph" height="200" width="275">
+        <div id="chart"></div>
             <div class = "left">
                 <p id = "open" ></p>
                 <p id = "prev" ></p>
@@ -81,8 +82,8 @@
                 <p id = "change" ></p>
                 <p id = "changePercent" ></p>  
             </div>
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="./scripts/finance.js"></script>
+        
     </body>
 </html>
