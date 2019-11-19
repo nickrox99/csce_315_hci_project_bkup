@@ -21,7 +21,7 @@ function loadFinanceInfo(){
     //split the text into symbol and company name
     var userInputSplit = userInput.split(" | ");
 
-    var symbol = tickerSymbol = userInputSplit[0];
+    var symbol = userInputSplit[0];
     var apiKey = '0SE9COWFX0MGZGAE';
     var functionStockGeneral = 'GLOBAL_QUOTE';
     var interval = '1min';
@@ -131,7 +131,7 @@ function autocomplete(inp, arr) {
     the text field element and an array of possible autocompleted values:*/
     var currentFocus;
     /*execute a function when someone writes in the text field:*/
-    inp.addEventListener("input", function(e) {
+    inp.addEventListener("keypress", function(e) {
         var a, b, i, val = this.value;
         /*close any already open lists of autocompleted values*/
         closeAllLists();
@@ -219,7 +219,6 @@ function autocomplete(inp, arr) {
 }
 
 function createStockChart(){
-
 }
 
 function setCompanyNameAndTickerSymbol(){
@@ -233,11 +232,13 @@ function setCompanyNameAndTickerSymbol(){
     //display on the webpage
     document.getElementById("name").innerHTML = companyName + ' (' + tickerSymbol + ")"
 }
+
 function displayChartAndFinanceInfo(){
     loadFinanceInfo();
     //createStockChart();
     setCompanyNameAndTickerSymbol();
 }
+
 window.onload = (function () {
 
     // get the search results from local storage
@@ -245,7 +246,7 @@ window.onload = (function () {
 
     // get Top 4 symbols for each keystroke and display on search bar
     // This funtion activly changes when the user types
-    document.getElementById("myInput").addEventListener("input", getListForAutocomple, false);
+    document.getElementById("myInput").addEventListener("input", getListForAutocomple);
 
     console.log("result: " + result);
     console.log("previousResult: " + previousResult);
