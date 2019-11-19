@@ -17,20 +17,30 @@ function loadFinanceInfo(){
     console.log("loadFinanceInfo() started in finance.js");
     
     // URL Request
-    var symbol = 'GOOG'; 
+    var userInput = document.getElementById("myInput").value;
+    //split the text into symbol and company name
+    var userInputSplit = userInput.split(" | ");
+
+    var symbol = tickerSymbol = userInputSplit[0];
     var apiKey = '0SE9COWFX0MGZGAE';
     var functionStockGeneral = 'GLOBAL_QUOTE';
     var interval = '1min';
     var urlStocks = 'https://www.alphavantage.co/query?function=' + functionStockGeneral + '&symbol=' + symbol + '&interval=' + interval + '&apikey=' + apiKey;
 
+    // request general finance information from API based on user symbol
     jQuery.ajax({
         url: urlStocks,
         dataType: 'json',
         contentType: "application/json",
         success: function(data){
-          
+            //console.log(data);
+
             var latestTradingDay = data['Global Quote']['07. latest trading day'];
-            document.getElementById("disclamer").innerHTML = 'Disclamer: '+ latestTradingDay;
+            var latestTradingDaySplit = latestTradingDay.split("-");
+            var year = latestTradingDaySplit[0];
+            var month = latestTradingDaySplit[1];
+            var day = latestTradingDaySplit[2];
+            document.getElementById("disclamer").innerHTML = 'Disclamer: '+ month + '-' + day + '-' + year;
 
             var open = data['Global Quote']['02. open'];
             document.getElementById("open").innerHTML = 'Open: $'+ open;
@@ -224,7 +234,7 @@ function setCompanyNameAndTickerSymbol(){
     document.getElementById("name").innerHTML = companyName + ' (' + tickerSymbol + ")"
 }
 function displayChartAndFinanceInfo(){
-    //loadFinanceInfo();
+    loadFinanceInfo();
     //createStockChart();
     setCompanyNameAndTickerSymbol();
 }
@@ -235,7 +245,7 @@ window.onload = (function () {
 
     // get Top 4 symbols for each keystroke and display on search bar
     // This funtion activly changes when the user types
-    //document.getElementById("myInput").addEventListener("input", getListForAutocomple, false);
+    document.getElementById("myInput").addEventListener("input", getListForAutocomple, false);
 
     console.log("result: " + result);
     console.log("previousResult: " + previousResult);
