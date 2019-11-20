@@ -31,11 +31,14 @@ function loadWiki() {
     request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
 
     request.onload = function () {
-
+		
+		
         // access JSON data
         //var data = JSON.parse(request.responseText)
-
-        console.log(request.response);
+		var headers = request.getAllResponseHeaders();
+		console.log(headers);
+		
+        document.getElementById("wiki_summary").innerHTML = request.response;
     }
     request.send();
 
