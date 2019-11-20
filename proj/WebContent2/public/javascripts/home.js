@@ -1,5 +1,3 @@
-
-
 function getUserSearch() {
     // get the user search from the homepage and put it in the globle variable
     var searchInput = document.getElementById('search_field').value;

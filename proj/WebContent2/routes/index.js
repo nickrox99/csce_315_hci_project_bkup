@@ -11,6 +11,8 @@ router.use('/home', function(req, res, next) {
   res.sendFile(path.resolve('views/home.html'));
 });
 
+
+
 router.use('/trending', function(req, res, next) {
   res.sendFile(path.resolve('views/trending.html'));
 });
