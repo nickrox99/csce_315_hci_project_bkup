@@ -2,7 +2,3 @@
 node_modules
 # Mac
 .DS_Store
-# Maven
-log/
-target/
-/.metadata/
