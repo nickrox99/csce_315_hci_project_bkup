@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var ReactDOMServer = require('react-dom/server')
-var router = ReactDOMServer.Router();
+var router = express.Router();
 
 
 // TWITTER
