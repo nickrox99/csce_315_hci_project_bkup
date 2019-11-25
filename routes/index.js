@@ -14,11 +14,12 @@ var client = new Twitter({
 });
 
 /* GET home page. */
-router.use('/', function (req, res, next) {
+router.use('*', function (req, res, next) {
+
 });
 
 router.use('/home', function (req, res, next) {
-  res.sendFile(path.resolve('views/home.html'));
+  //res.sendFile(path.resolve('views/home.html'));
 });
 
 
