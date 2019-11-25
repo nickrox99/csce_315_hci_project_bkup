@@ -5,12 +5,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 var app = express();
 
 // view engine setup
-app.set('views',  'react');
+app.set('view engine',  'react');
 //app.set('view engine', 'jade');
 
 app.use(logger('dev'));
@@ -21,14 +20,15 @@ app.use(express.static(__dirname + '/public'));
 // app.use('/public/javascripts/', express.static(__dirname + '/public/javascripts'));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-app.set('port', process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 
 // error handler
 app.use(function(err, req, res, next) {
