@@ -9,7 +9,7 @@ var indexRouter = require('./routes/index');
 var app = express();
 
 // view engine setup
-app.set('views',  'react');
+app.set('view engine',  'react');
 //app.set('view engine', 'jade');
 
 app.use(logger('dev'));
@@ -27,7 +27,9 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-app.set('port', 3000);
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 
 // error handler
 app.use(function(err, req, res, next) {
