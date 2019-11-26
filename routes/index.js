@@ -15,6 +15,7 @@ var client = new Twitter({
 
 /* GET home page. */
 router.use('*', function (req, res, next) {
+  res.render('App.js');
 
 });
 
@@ -26,6 +27,28 @@ router.use('/home', function (req, res, next) {
 
 router.use('/trending', function (req, res, ) {
 
+  app.use(function (req, res) {
+    var delayed = new DelayedResponse(req, res);
+    twitter_slow_function(delayed.wait());
+  });
+
+  //const baseWikiURL = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="' + 'result' + '&format=json&callback=?&origin=*';
+  //fetch(baseWikiURL)
+  //.then(res => res.json())
+   // .then(data => {
+   //   console.log({data})
+   //   res.send({data})
+      
+      //  .catch(err => {
+    //      res.redirect('/home');
+       // });
+    //})
+
+
+});
+
+function twiter_slow_function(callback)
+{
   const baseTwitterURL = 'https://api.twitter.com/1.1/search/tweets.json?q=%23superbowl&result_type=recent'
   fetch(baseTwitterURL)
     .then(res => res.json())
@@ -37,22 +60,7 @@ router.use('/trending', function (req, res, ) {
           res.redirect('/home');
         });
     })
-
-  const baseWikiURL = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="' + 'result' + '&format=json&callback=?&origin=*';
-  fetch(baseWikiURL)
-  .then(res => res.json())
-    .then(data => {
-      console.log({data})
-      res.send({data})
-      
-        .catch(err => {
-          res.redirect('/home');
-        });
-    })
-
-
-});
-
+}
 router.use('/finance', function (req, res, next) {
   res.sendFile(path.resolve('views/finance.html'));
 });
