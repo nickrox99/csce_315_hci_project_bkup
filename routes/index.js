@@ -13,6 +13,9 @@ var client = new Twitter({
   access_token_secret: 'J4u5BSyWQiDqIaCMQgr4inkNHtHJOuI1Uvb2V30rVFCDJ'
 });
 
+app.set('views', __dirname +'/client/views')
+app.engine('html', require('ejs').renderFile);
+
 var twitter_res;
 
 /* GET home page. */
@@ -54,17 +57,7 @@ router.use('/trending', function (req, res, ) {
   //res.sendfile()
   twiter_slow_function()
 
-  const baseWikiURL = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="' + 'result' + '&format=json&callback=?&origin=*';
-  fetch(baseWikiURL)
-  .then(res => res.json())
-  .then(data => {
-  console.log({data})
-  res.send({data})
-      
-  .catch(err => {
-  res.redirect('/home');
-  });
-  })
+  res.render(__dirname + "/public/views/trending.html");
 
 
 });
