@@ -28,6 +28,11 @@ app.engine('html', require('ejs').renderFile);
 
 app.use('/', indexRouter);
 
+app.get('/', function(req, res)
+{
+  res.sendFile(__dirname + "public/views/trending.html");
+});
+
 
 
 const host = '0.0.0.0';

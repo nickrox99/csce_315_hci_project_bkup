@@ -56,10 +56,7 @@ router.use('/trending', function (req, res, ) {
   //res.sendfile()
   //twiter_slow_function()
 
-  res.sendFile(__dirname + "/public/views/trending.html", 
-  {
-    root: path.join(__dirname, './')
-  });
+  res.sendFile(__dirname + "/public/views/trending.html");
 
 
 });
