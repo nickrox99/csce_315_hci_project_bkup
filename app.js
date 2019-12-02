@@ -14,7 +14,6 @@ app.set('view engine', 'html');
 
 app.use(express.static(path.join(__dirname)));
 app.use('/public', express.static(__dirname + '/public'));
-
 app.use('/views', express.static(__dirname + '/views'));
 
 
@@ -27,6 +26,10 @@ app.use(cookieParser());
 
 //app.use('/', indexRouter);
 
+app.get('/home', function(req, res))
+{
+  res.sendFile(path.join(__dirname + "/views/home.html"))
+}
 app.get('/trending', function(req, res)
 {
   res.sendFile(path.join(__dirname + "/views/trending.html"));
