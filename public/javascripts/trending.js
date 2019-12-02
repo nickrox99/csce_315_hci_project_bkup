@@ -138,10 +138,17 @@ function showDate() {
 
 }
 
+
+function loadTweets(){
+    const tweet1 = 'Hello';
+    ReactDOM.render(tweet1, document.getElementById('tweet1'));
+}
+
+
 window.onload = (function () {
 
-    var tweet = document.getElementById("tweet");
-    var tweet_id = tweet.getAttribute("tweetID");
+    //var tweet = document.getElementById("tweet");
+    //var tweet_id = tweet.getAttribute("tweetID");
 
     // not working properly
     getNewSearchResult();
@@ -152,11 +159,13 @@ window.onload = (function () {
     showDate();
 
     // load wiki currently prints JSON to the console, we need to parse and display this
-    loadWiki();
+    //loadWiki();
 
 
     // load page shoiuld work
-    loadTwitterTimeline();
+    //loadTwitterTimeline();
+
+    loadTweets();
 
 
     console.log("result: " + result);
