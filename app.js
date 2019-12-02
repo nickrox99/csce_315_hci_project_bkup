@@ -26,10 +26,12 @@ app.use(cookieParser());
 
 //app.use('/', indexRouter);
 
-app.get('/home', function(req, res))
+app.get('/home', function(req, res)
 {
-  res.sendFile(path.join(__dirname + "/views/home.html"))
-}
+  res.sendFile(path.join(__dirname + "/views/home.html"));
+
+});
+
 app.get('/trending', function(req, res)
 {
   res.sendFile(path.join(__dirname + "/views/trending.html"));
