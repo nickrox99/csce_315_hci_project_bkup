@@ -12,20 +12,22 @@ var app = express();
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
+app.use(express.static(path.join(__dirname)));
+app.use('/public', express.static(__dirname + '/public'));
 
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(__dirname + '/public'));
+
 // app.use('/public/javascripts/', express.static(__dirname + '/public/javascripts'));
 
-app.use('/', indexRouter);
+//app.use('/', indexRouter);
 
 app.get('/', function(req, res)
 {
-  res.sendFile(__dirname + "public/views/trending.html");
+  res.sendFile(path.join(__dirname + "views/trending.html"));
   
 });
 
