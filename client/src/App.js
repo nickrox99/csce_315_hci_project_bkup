@@ -23,7 +23,7 @@ class App extends Component {
 
   componentDidMount() {
       this.callAPI()
-      .then(res => this.set({data: res.express}))
+      .then(res => this.set({data: twitter_res}))
       .then(err => console.log(err));
     }
 
@@ -45,4 +45,24 @@ class App extends Component {
 }
 }
 
-export default App;
+class Twitter_search extends Component
+{
+  constructor(props)
+  {
+    super(props);
+    this.state = {
+      data: null,
+      hits: [],
+    };
+  }
+
+  componentDidMount()
+  {
+    fetch()
+  }
+  render()
+  {
+    return <h1>Twitter Results</h1>
+  }
+}
+export default App, Twitter_search;
