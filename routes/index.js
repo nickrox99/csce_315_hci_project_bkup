@@ -52,6 +52,7 @@ function twiter_slow_function(callback)
 
 router.use('/trending', function (req, res, ) {
 
+  //res.sendfile()
   twiter_slow_function()
 
   const baseWikiURL = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="' + 'result' + '&format=json&callback=?&origin=*';
