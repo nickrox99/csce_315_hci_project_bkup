@@ -8,9 +8,6 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
-// view engine setup
-app.set('view engine',  'react');
-//app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
