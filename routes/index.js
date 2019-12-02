@@ -17,7 +17,6 @@ var twitter_res;
 
 /* GET home page. */
 router.use('*', function (req, res, next) {
-  res.render('App.js');
 
 });
 
