@@ -13,8 +13,7 @@ var client = new Twitter({
   access_token_secret: 'J4u5BSyWQiDqIaCMQgr4inkNHtHJOuI1Uvb2V30rVFCDJ'
 });
 
-app.set('views', __dirname +'/public/views')
-app.engine('html', require('ejs').renderFile);
+
 
 var twitter_res;
 
@@ -55,9 +54,12 @@ function twiter_slow_function(callback)
 router.use('/trending', function (req, res, ) {
 
   //res.sendfile()
-  twiter_slow_function()
+  //twiter_slow_function()
 
-  res.render(__dirname + "/public/views/trending.html");
+  res.sendFile(__dirname + "/public/views/trending.html", 
+  {
+    root: path.join(__dirname, './')
+  });
 
 
 });
