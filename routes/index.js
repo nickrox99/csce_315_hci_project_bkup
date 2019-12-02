@@ -32,17 +32,17 @@ router.use('/trending', function (req, res, ) {
     twitter_slow_function(delayed.wait());
   });
 
-  //const baseWikiURL = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="' + 'result' + '&format=json&callback=?&origin=*';
-  //fetch(baseWikiURL)
-  //.then(res => res.json())
-   // .then(data => {
-   //   console.log({data})
-   //   res.send({data})
+  const baseWikiURL = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="' + 'result' + '&format=json&callback=?&origin=*';
+  fetch(baseWikiURL)
+  .then(res => res.json())
+  .then(data => {
+  console.log({data})
+  res.send({data})
       
-      //  .catch(err => {
-    //      res.redirect('/home');
-       // });
-    //})
+  .catch(err => {
+  res.redirect('/home');
+  });
+  })
 
 
 });

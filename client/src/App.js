@@ -38,7 +38,7 @@ class App extends Component {
   {
       return(
         <>
-        <div> {this.state.data} </div>
+        <div> Hello </div>
         </>
 
     );
