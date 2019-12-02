@@ -13,7 +13,7 @@ var client = new Twitter({
   access_token_secret: 'J4u5BSyWQiDqIaCMQgr4inkNHtHJOuI1Uvb2V30rVFCDJ'
 });
 
-app.set('views', __dirname +'/client/views')
+app.set('views', __dirname +'/public/views')
 app.engine('html', require('ejs').renderFile);
 
 var twitter_res;
