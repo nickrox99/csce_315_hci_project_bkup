@@ -11,9 +11,7 @@ var app = express();
 // view engine setup
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
-exports.index = function(req, res){
-  res.render('index', { title: 'ejs' }
-);};
+
 
 
 app.use(logger('dev'));
@@ -23,14 +21,12 @@ app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 // app.use('/public/javascripts/', express.static(__dirname + '/public/javascripts'));
 
-app.set('views', __dirname +'/public/views')
-app.engine('html', require('ejs').renderFile);
-
 app.use('/', indexRouter);
 
 app.get('/', function(req, res)
 {
   res.sendFile(__dirname + "public/views/trending.html");
+  
 });
 
 
