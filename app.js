@@ -8,6 +8,13 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
+// view engine setup
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+exports.index = function(req, res){
+  res.render('index', { title: 'ejs' }
+);};
+
 
 app.use(logger('dev'));
 app.use(express.json());
