@@ -9,24 +9,36 @@ var indexRouter = require('./routes/index');
 var app = express();
 
 // view engine setup
-app.set('view engine',  'react');
-//app.set('view engine', 'jade');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
+app.use(express.static(path.join(__dirname)));
+app.use('/public', express.static(__dirname + '/public'));
+app.use('/views', express.static(__dirname + '/views'));
+
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(__dirname + '/public'));
+
 // app.use('/public/javascripts/', express.static(__dirname + '/public/javascripts'));
 
-app.use('/', indexRouter);
+//app.use('/', indexRouter);
 
-// catch 404 and forward to error handler
+app.get('/home', function(req, res)
+{
+  res.sendFile(path.join(__dirname + "/views/home.html"));
 
-
-app.use(function(req, res, next) {
-  next(createError(404));
 });
+
+app.get('/trending', function(req, res)
+{
+  res.sendFile(path.join(__dirname + "/views/trending.html"));
+  
+});
+
+
 
 const host = '0.0.0.0';
 const port = process.env.PORT || 3000;
@@ -35,15 +47,5 @@ app.listen(port, host, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
 
 module.exports = app;

@@ -10,39 +10,23 @@ import './App.css';
 
 // TWITTER
 
-
-
-class App extends Component {
-  constructor(props) {
+class Twitter_search extends Component
+{
+  constructor(props)
+  {
     super(props);
-    this.state = { 
-      data: null
+    this.state = {
+      data: null,
+      hits: [],
     };
   }
 
-
-  componentDidMount() {
-      this.callAPI()
-      .then(res => this.set({data: res.express}))
-      .then(err => console.log(err));
-    }
-
-    async callAPI() {
-      const twitter_res = await fetch('/trending')
-      const body = await twitter_res.json();
-      this.state.data = body;
-    }
-
-
+  componentDidMount()
+  {
+  }
   render()
   {
-      return(
-        <>
-        <div> Hello </div>
-        </>
-
-    );
+    return <h1>Twitter Results</h1>
+  }
 }
-}
-
-export default App;
+export default Twitter_search;
