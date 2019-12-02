@@ -23,7 +23,11 @@ app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 // app.use('/public/javascripts/', express.static(__dirname + '/public/javascripts'));
 
+app.set('views', __dirname +'/public/views')
+app.engine('html', require('ejs').renderFile);
+
 app.use('/', indexRouter);
+
 
 
 const host = '0.0.0.0';
