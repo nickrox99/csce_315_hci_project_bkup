@@ -71,6 +71,7 @@ app.get('/trending', function (req, res) {
   client.get('search/tweets', { q: 'apple' }, function (error, data, response) {
     // TODO: fix results, currently only getting 'null'
     if (error) {
+      // error message thrown to console
       console.log("[LOG] No error:  " + data);
     }
     if (!error) {
