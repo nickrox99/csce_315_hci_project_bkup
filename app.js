@@ -93,7 +93,7 @@ app.get('/trending', function (req, res) {
     // access JSON data
     //var data = JSON.parse(request.responseText)
 
-    console.log(request.response);
+    console.log(request.responseText);
   }
   request.send();
 
