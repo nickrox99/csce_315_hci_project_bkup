@@ -34,6 +34,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+let user_search = "default";
+
 // app.use('/public/javascripts/', express.static(__dirname + '/public/javascripts'));
 
 //app.use('/', indexRouter);
@@ -47,6 +49,11 @@ app.get('/home', function (req, res) {
   res.sendFile(path.join(__dirname + "/views/home.html"));
   //res.json({tweet: 'Test'});
 });
+
+app.get('/search', function (req, res){
+  
+}) 
+
 
 app.get('/trending.html', function (req, res) {
   console.log("redirecting to trending page");
