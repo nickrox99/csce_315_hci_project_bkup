@@ -99,6 +99,7 @@ app.get('/trending', function (req, res) {
 
 
   // finance search
+  
 
   // TODO: put finance logic here
 
