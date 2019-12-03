@@ -50,6 +50,11 @@ app.get('/home', function (req, res) {
   //res.json({tweet: 'Test'});
 });
 
+app.get('/search', function (req, res){
+  
+}) 
+
+
 app.get('/trending.html', function (req, res) {
   console.log("redirecting to trending page");
   res.redirect('/trending');
