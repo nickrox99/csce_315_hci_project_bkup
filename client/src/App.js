@@ -33,17 +33,27 @@ const e = React.createElement;
 
 class wikiInfo extends React.Component {
   componentDidMount() {
-    fetch('/search')
+    fetch("/search")
       .then(res => res.json())
-      .then(result => {
-        this.setState({
-          isLoaded: true,
-          items: result
-        });
-      });
+      .then(
+        result => {
+          this.setState({
+            isLoaded: true,
+            items: result
+          });
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error: error
+          });
+        }
+      );
   }
   render(){
-    return 'General Finance Info';
+    const { error, isLoaded, items } = this.state;
+    console.log(this.state.items);
+    return "Works"
   }
 }
 
@@ -67,4 +77,4 @@ class wikiInfo extends React.Component {
 //     return 'It worked';
 //   }
 // }
-//export default Twitter_search;
+export default wikiInfo;
