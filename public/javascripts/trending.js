@@ -140,8 +140,11 @@ function showDate() {
 
 
 function loadTweets(){
-    const tweet1 = document.querySelector('#tweet1');
-    ReactDOM.render(e(LikeButton),tweet1);
+    // const tweet1 = document.querySelector('#tweet1');
+    // ReactDOM.render(e(LikeButton),tweet1);
+
+    const financeInfo = document.querySelector('#tweet1');
+    ReactDOM.render(e(GeneralFinanceInfo),financeInfo);
 }
 
 
