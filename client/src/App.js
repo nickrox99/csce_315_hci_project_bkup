@@ -31,10 +31,16 @@ const e = React.createElement;
 //   }
 // }
 
-class GeneralFinanceInfo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { liked: false };
+class wikiInfo extends React.Component {
+  componentDidMount() {
+    fetch('/search')
+      .then(res => res.json())
+      .then(result => {
+        this.setState({
+          isLoaded: true,
+          items: result
+        });
+      });
   }
   render(){
     return 'General Finance Info';
