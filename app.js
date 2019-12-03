@@ -58,6 +58,8 @@ app.get('/trending.html', function(req, res)
 app.get('/trending', function(req, res)
 {
   res.sendFile(path.join(__dirname + "/views/trending.html"));
+
+  // twitter search
   client.get('search/tweets' , {q: 'apple'}, function(error, data, response)
   {
     if(error)
@@ -69,6 +71,15 @@ app.get('/trending', function(req, res)
       console.log("[LOG] Error: " + data);
     }
   });
+
+  // wikipedia search
+
+  // TODO put wiki logic here
+
+  // finance search
+
+  // TODO put finance logic here
+  
 });
 
 const host = '0.0.0.0';
