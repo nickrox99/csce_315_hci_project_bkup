@@ -49,6 +49,12 @@ app.get('/home', function(req, res)
   //res.json({tweet: 'Test'});
 });
 
+app.get('/trending.html')
+{
+  console.log("redirecting to trending page");
+  res.redirect('/trending');
+}
+
 app.get('/trending', function(req, res)
 {
   res.sendFile(path.join(__dirname + "/views/trending.html"))
@@ -65,10 +71,6 @@ app.get('/trending', function(req, res)
     
   });
 });
-
-
-
-
 
 const host = '0.0.0.0';
 const port = process.env.PORT || 3000;
