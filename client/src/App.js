@@ -67,4 +67,4 @@ class wikiInfo extends React.Component {
 //     return 'It worked';
 //   }
 // }
-//export default Twitter_search;
+export default wikiInfo;
