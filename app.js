@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var dom = require('express-dom');
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 
 // TWITTER
