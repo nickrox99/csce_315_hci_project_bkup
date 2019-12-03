@@ -10,34 +10,36 @@
 
 const e = React.createElement;
 
-class LikeButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { liked: false };
-  }
+// Working Example
 
-  render() {
-    if (this.state.liked) {
-      return 'You liked this.';
-    }
-
-    return e(
-      'button',
-      { onClick: () => this.setState({ liked: true }) },
-      'Like'
-    );
-  }
-}
-
-// class GeneralFinanceInfo extends React.Component {
+// class LikeButton extends React.Component {
 //   constructor(props) {
 //     super(props);
 //     this.state = { liked: false };
 //   }
-//   render(){
 
+//   render() {
+//     if (this.state.liked) {
+//       return 'You liked this.';
+//     }
+
+//     return e(
+//       'button',
+//       { onClick: () => this.setState({ liked: true }) },
+//       'Like'
+//     );
 //   }
 // }
+
+class GeneralFinanceInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { liked: false };
+  }
+  render(){
+    return 'General Finance Info';
+  }
+}
 
 
 // class Twitter_search extends Component
