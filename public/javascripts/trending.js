@@ -143,8 +143,8 @@ function loadTweets(){
     // const tweet1 = document.querySelector('#tweet1');
     // ReactDOM.render(e(LikeButton),tweet1);
 
-    const financeInfo = document.querySelector('#tweet1');
-    ReactDOM.render(e(GeneralFinanceInfo),financeInfo);
+    // const financeInfo = document.querySelector('#tweet1');
+    // ReactDOM.render(e(GeneralFinanceInfo),financeInfo);
 }
 
 
@@ -168,7 +168,10 @@ window.onload = (function () {
     // load page shoiuld work
     //loadTwitterTimeline();
 
-    loadTweets();
+    // loadTweets();
+
+    const wikiInfoLocation = document.querySelector('#wiki_summary');
+    ReactDOM.render(e(wikiInfo),wikiInfoLocation);
 
 
     console.log("result: " + result);
