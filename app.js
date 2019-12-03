@@ -49,16 +49,16 @@ app.get('/home', function(req, res)
   //res.json({tweet: 'Test'});
 });
 
-app.get('/trending.html')
+app.get('/trending.html', function(req, res)
 {
   console.log("redirecting to trending page");
   res.redirect('/trending');
-}
+});
 
 app.get('/trending', function(req, res)
 {
-  res.sendFile(path.join(__dirname + "/views/trending.html"))
-  client.get('search/tweets' , {q: 'apple since:2019-07-11',  count: 100}, function(error, data, response)
+  res.sendFile(path.join(__dirname + "/views/trending.html"));
+  client.get('search/tweets' , {q: 'apple'}, function(error, data, response)
   {
     if(error)
     {
@@ -66,9 +66,8 @@ app.get('/trending', function(req, res)
     }
     if(!error)
     {
-      console.log("[LOG] Error: " + data.json());
+      console.log("[LOG] Error: " + data);
     }
-    
   });
 });
 
