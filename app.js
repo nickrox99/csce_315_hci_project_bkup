@@ -83,7 +83,7 @@ app.get('/trending', function (req, res) {
   var request = new XMLHttpRequest();
 
   var query = 'test';
-  var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="' + result + '&format=json&callback=?&origin=*';
+  var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="' + 'test' + '&format=json&callback=?&origin=*';
   request.open('GET', url, true);
 
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
