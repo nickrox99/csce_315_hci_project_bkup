@@ -1,32 +1,62 @@
-import React, { Component } from 'react';
+
+
 //import Twitter from 'twitter';
 
 
 // VIEWS
-import './App.css';
+//import './App.css';
 // import Trending  from ./Trending
 // import Finance from ./Finance
 
+const e = React.createElement;
 
-// TWITTER
-
-class Twitter_search extends Component
-{
-  constructor(props)
-  {
+class LikeButton extends React.Component {
+  constructor(props) {
     super(props);
-    this.state = {
-      data: null,
-      hits: [],
-    };
+    this.state = { liked: false };
   }
 
-  componentDidMount()
-  {
-  }
-  render()
-  {
-    return <h1>Twitter Results</h1>
+  render() {
+    if (this.state.liked) {
+      return 'You liked this.';
+    }
+
+    return e(
+      'button',
+      { onClick: () => this.setState({ liked: true }) },
+      'Like'
+    );
   }
 }
-export default Twitter_search;
+
+// class GeneralFinanceInfo extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = { liked: false };
+//   }
+//   render(){
+
+//   }
+// }
+
+
+// class Twitter_search extends Component
+// {
+//   constructor(props)
+//   {
+//     super(props);
+//     this.state = {
+//       data: null,
+//       hits: [],
+//     };
+//   }
+
+//   componentDidMount()
+//   {
+//   }
+//   render()
+//   {
+//     return 'It worked';
+//   }
+// }
+//export default Twitter_search;
