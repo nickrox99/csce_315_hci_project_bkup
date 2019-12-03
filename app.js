@@ -34,6 +34,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+let user_search = "default";
+
 // app.use('/public/javascripts/', express.static(__dirname + '/public/javascripts'));
 
 //app.use('/', indexRouter);
