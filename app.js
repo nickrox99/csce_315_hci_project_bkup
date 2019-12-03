@@ -3,13 +3,24 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var dom = require('express-dom');
 
-var indexRouter = require('./routes/index');
+
+// TWITTER
+var Twitter = require('twit');
+var client = new Twitter({
+  consumer_key: 'M5KE9w5g3o1nvohfsJoHMpy6p ',
+  consumer_secret: 'HyqjN5Mw8LeDwkjmeRRUaiygTRUink6vlH9XzEAeTDFNLcl6vm',
+  app_only_auth:        true
+});
+
+//ar indexRouter = require('./routes/index');
+var ReactDOM = require('react-dom')
 
 var app = express();
 
 // view engine setup
-app.engine('html', require('ejs').renderFile);
+//app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 app.use(express.static(path.join(__dirname)));
@@ -26,17 +37,36 @@ app.use(cookieParser());
 
 //app.use('/', indexRouter);
 
+app.get('/', function(req, res)
+{
+  console.log("redirecting to home page");
+  res.redirect('/home');
+});
+
 app.get('/home', function(req, res)
 {
   res.sendFile(path.join(__dirname + "/views/home.html"));
-
+  //res.json({tweet: 'Test'});
 });
 
 app.get('/trending', function(req, res)
 {
-  res.sendFile(path.join(__dirname + "/views/trending.html"));
-  
+  res.sendFile(path.join(__dirname + "/views/trending.html"))
+  client.get('search/tweets' , {q: 'apple since:2019-07-11',  count: 100}, function(error, data, response)
+  {
+    if(error)
+    {
+      console.log("[LOG] No error:  " + data);
+    }
+    if(!error)
+    {
+      console.log("[LOG] Error: " + data.json());
+    }
+    
+  });
 });
+
+
 
 
 

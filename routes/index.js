@@ -1,17 +1,6 @@
 var express = require('express');
 var path = require('path');
-var ReactDOMServer = require('react-dom/server')
 var router = express.Router();
-
-
-// TWITTER
-var Twitter = require('twitter');
-var client = new Twitter({
-  consumer_key: 'BdEEDfBrbO9QGPXAYJ3XbRCEZ ',
-  consumer_secret: '9rqykzbNs1hZjkCQHSqb3saQiaHzzHmYJ0cli9EWtJCmKmceSz',
-  access_token_key: '2255316103-q9bK11fXyV9gblZQasqEfLi2Ob6jrhrnewQE6F3',
-  access_token_secret: 'J4u5BSyWQiDqIaCMQgr4inkNHtHJOuI1Uvb2V30rVFCDJ'
-});
 
 
 
