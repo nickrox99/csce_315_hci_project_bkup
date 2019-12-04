@@ -130,10 +130,17 @@ class twitterInfo extends React.Component {
   }
   render(){
     const { error, isLoaded, items } = this.state;
-    //return String(this.state.items[0])
-    return "works"
+    const element = 
+      React.createElement('p',{},String(this.state.items[0]),
+      React.createElement('p',{},String(this.state.items[1]),
+      React.createElement('p',{},String(this.state.items[2]),
+      React.createElement('p',{},String(this.state.items[3]),
+      React.createElement('p',{},String(this.state.items[4])
+    )))))
+    return element
   }
 }
+
 
 class sentimentInfo extends React.Component {
   constructor(props) {
