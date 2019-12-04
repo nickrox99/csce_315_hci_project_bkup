@@ -79,6 +79,7 @@ app.post('/search', (req, res) => {
   console.log("[LOG] /search {post} started");
 
   if (typeof req.body.bar === 'undefined') {
+    console.log("[LOG] ERROR: /search {post} -> missing paramter bar");
     res.status(400).json({ error: 'missing paramter bar', data: null });
     return;
   }
@@ -93,14 +94,6 @@ app.get('/trending', function (req, res) {
   console.log("[LOG] /trending started");
 
   res.sendFile(path.join(__dirname + "/views/trending.html"));
-
-
-
-  // finance search
-
-
-  // TODO: put finance logic here
-
 });
 
 app.get('/wikiAPIcall', function (req, res) {
@@ -132,14 +125,18 @@ app.get('/twitterAPIcall', function (req, res) {
   console.log("[LOG] /twiterAPIcall started");
 
   // twitter search
-  client.get('search/tweets', { q: 'apple' }, function (error, data, response) {
+  client.get('search/tweets', { q: 'apple' }, function (error, data) {
     // TODO: fix results, currently only getting 'null'
     if (error) {
       // error message thrown to console
-      console.log("[LOG] No error:  " + data);
+      console.log("[LOG] ERROR:  " + error);
     }
     if (!error) {
-      console.log("[LOG] Error: " + data);
+      var tweets = data.statuses;
+      for(var i = 0; i < tweets.length; i++)
+      {
+        console.log(tweets[i].text);
+      }
     }
   });
 
@@ -148,7 +145,15 @@ app.get('/twitterAPIcall', function (req, res) {
 app.get('/financeAPIcall', function(req, res){
   console.log("[LOG] /financeAPIcall started");
 
+  // TODO add finance API call logic
+
 });
+
+
+// test route for unit testing
+app.get('/test', function(req, res){
+  res.redirect('/twitterAPIcall');
+})
 
 const host = '0.0.0.0';
 const port = process.env.PORT || 3000;
