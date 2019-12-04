@@ -8,10 +8,16 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 // TWITTER
 var Twitter = require('twit');
 var client = new Twitter({
-  consumer_key: 'M5KE9w5g3o1nvohfsJoHMpy6p ',
+  consumer_key: 'M5KE9w5g3o1nvohfsJoHMpy6p',
   consumer_secret: 'HyqjN5Mw8LeDwkjmeRRUaiygTRUink6vlH9XzEAeTDFNLcl6vm',
+  access_token: '2255316103-q9bK11fXyV9gblZQasqEfLi2Ob6jrhrnewQE6F3', 
+  access_token_secret: 'J4u5BSyWQiDqIaCMQgr4inkNHtHJOuI1Uvb2V30rVFCDJ',
   app_only_auth: true
 });
+
+// SENTIMENT
+var Sentiment = require('sentiment');
+var sentiment = new Sentiment();
 
 //ar indexRouter = require('./routes/index');
 var ReactDOM = require('react-dom')
@@ -101,42 +107,49 @@ app.get('/wikiAPIcall', function (req, res) {
   console.log("[LOG] /wikiAPIcall started");
 
   // wikipedia search
+
+  var jsonReponse;
   var request = new XMLHttpRequest();
   var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="' + user_search + '&format=json&callback=?&origin=*';
+  request.responseType = 'json';
   request.open('GET', url, true);
-
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-
-  request.onload = function () {
-
-    // access JSON data
-    //var data = JSON.parse(request.responseText)
-
-    console.log(request.responseText);
+  request.onload = function()
+  {
+    jsonReponse = request.responseText;
+    console.log(jsonReponse);
+    res.json(jsonReponse);
+    
   }
-  request.send();
-
-  res.json(request.responseText);
-
+  request.send();  
 });
 
+let global_array_tweets = new Array();
 app.get('/twitterAPIcall', function (req, res) {
 
   console.log("[LOG] /twiterAPIcall started");
 
   // twitter search
-  client.get('search/tweets', { q: 'apple' }, function (error, data) {
+  client.get('search/tweets', { q: "'" + user_search + "'" }, function (error, data) {
     // TODO: fix results, currently only getting 'null'
     if (error) {
       // error message thrown to console
+      //res.send("Error loading tweets, please try again!");
       console.log("[LOG] ERROR:  " + error);
     }
     if (!error) {
       var tweets = data.statuses;
+      var array_tweets = new Array(); 
+      global_array_tweets = [];
       for(var i = 0; i < tweets.length; i++)
       {
+        array_tweets.push(tweets[i].text);
+        global_array_tweets.push(tweets[i].text);
+        // print out the first tweet
         console.log(tweets[i].text);
+        
       }
+      res.send(array_tweets);
     }
   });
 
@@ -149,10 +162,41 @@ app.get('/financeAPIcall', function(req, res){
 
 });
 
+app.get('/facebookAPIcall', function(req, res)
+{
+  console.log("[LOG] /facebookAPIcall started");
+
+
+
+  // FACEBOOK REQUIRES PAYMENT FOR SEARCHING PUBLIC POSTS
+  
+
+
+
+});
+
+app.get('/sentimentAPIcall', function(req, res)
+{
+  console.log("[LOG] /sentimentAPIcall started")
+
+  var tweet_aggregate = "";
+  for(var i = 0; i < global_array_tweets.length; i++)
+  {
+    tweet_aggregate+=(global_array_tweets[i] + " ");
+  }
+  var result = sentiment.analyze(tweet_aggregate);
+  console.log(result);
+  res.send(result);
+
+
+  
+
+})
+
 
 // test route for unit testing
 app.get('/test', function(req, res){
-  res.redirect('/twitterAPIcall');
+  res.redirect('/sentimentAPIcall');
 })
 
 const host = '0.0.0.0';

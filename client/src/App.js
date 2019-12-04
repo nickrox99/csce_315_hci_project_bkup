@@ -41,7 +41,7 @@ class wikiInfo extends React.Component {
     };
   }
   componentDidMount() {
-    fetch("/search")
+    fetch("/wikiAPIcall")
       .then(res => res.json())
       .then(
         result => {
@@ -61,7 +61,9 @@ class wikiInfo extends React.Component {
   render(){
     const { error, isLoaded, items } = this.state;
     console.log(this.state.items);
-    return "Works"
+    console.log(this.state.items[0]);
+
+    return "Trending"
   }
 }
 
@@ -94,8 +96,8 @@ class financeInfo extends React.Component {
   }
   render(){
     const { error, isLoaded, items } = this.state;
-    console.log(this.state.items);
-    return "Works"
+    //console.log(this.state.items);
+    return "Works";
   }
 }
 
@@ -109,7 +111,7 @@ class twitterInfo extends React.Component {
     };
   }
   componentDidMount() {
-    fetch("/search")
+    fetch("/twitterAPIcall")
       .then(res => res.json())
       .then(
         result => {
@@ -128,8 +130,41 @@ class twitterInfo extends React.Component {
   }
   render(){
     const { error, isLoaded, items } = this.state;
-    console.log(this.state.items);
-    return "Works"
+    //return String(this.state.items[0])
+    return "works"
+  }
+}
+
+class sentimentInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: []
+    };
+  }
+  componentDidMount() {
+    fetch("/sentimentAPIcall")
+      .then(res => res.json())
+      .then(
+        result => {
+          this.setState({
+            isLoaded: true,
+            items: result
+          });
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error: error
+          });
+        }
+      );
+  }
+  render(){
+    const { error, isLoaded, items } = this.state;
+    return String(this.state.items)
   }
 }
 
