@@ -191,8 +191,8 @@ window.onload = (function () {
     const sentimentInfoLocation = document.querySelector('#sentiment');
     ReactDOM.render(e(sentimentInfo),sentimentInfoLocation);
 
-
-
+    const financeGraphInfoLocation = document.querySelector('#financeGraph');
+    ReactDOM.render(e(financeGraphInfo),financeGraphInfoLocation);
 
     console.log("result: " + result);
     console.log("previousResult: " + previousResult);
