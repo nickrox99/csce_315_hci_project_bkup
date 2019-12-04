@@ -159,25 +159,10 @@ function loadFinance(){
 
 window.onload = (function () {
 
-    //var tweet = document.getElementById("tweet");
-    //var tweet_id = tweet.getAttribute("tweetID");
-
-    // not working properly
     getNewSearchResult();
-
-
-
+    
     // show date works
     showDate();
-
-    // load wiki currently prints JSON to the console, we need to parse and display this
-    //loadWiki();
-
-
-    // load page shoiuld work
-    //loadTwitterTimeline();
-
-    // loadTweets();
 
     const wikiInfoLocation = document.querySelector('#wiki_summary');
     ReactDOM.render(e(wikiInfo),wikiInfoLocation); 
