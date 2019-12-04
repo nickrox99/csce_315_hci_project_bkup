@@ -27,45 +27,47 @@ function loadFinanceInfo(){
     var interval = '1min';
     var urlStocks = 'https://www.alphavantage.co/query?function=' + functionStockGeneral + '&symbol=' + symbol + '&interval=' + interval + '&apikey=' + apiKey;
 
+    var request = new XMLHttpRequest();
+
     // request general finance information from API based on user symbol
-    jQuery.ajax({
-        url: urlStocks,
-        dataType: 'json',
-        contentType: "application/json",
-        success: function(data){
-            //console.log(data);
+    // jQuery.ajax({
+    //     url: urlStocks,
+    //     dataType: 'json',
+    //     contentType: "application/json",
+    //     success: function(data){
+    //         //console.log(data);
 
-            var latestTradingDay = data['Global Quote']['07. latest trading day'];
-            var latestTradingDaySplit = latestTradingDay.split("-");
-            var year = latestTradingDaySplit[0];
-            var month = latestTradingDaySplit[1];
-            var day = latestTradingDaySplit[2];
-            document.getElementById("disclamer").innerHTML = 'Disclamer: '+ month + '-' + day + '-' + year;
+    //         var latestTradingDay = data['Global Quote']['07. latest trading day'];
+    //         var latestTradingDaySplit = latestTradingDay.split("-");
+    //         var year = latestTradingDaySplit[0];
+    //         var month = latestTradingDaySplit[1];
+    //         var day = latestTradingDaySplit[2];
+    //         document.getElementById("disclamer").innerHTML = 'Disclamer: '+ month + '-' + day + '-' + year;
 
-            var open = data['Global Quote']['02. open'];
-            document.getElementById("open").innerHTML = 'Open: $'+ open;
+    //         var open = data['Global Quote']['02. open'];
+    //         document.getElementById("open").innerHTML = 'Open: $'+ open;
 
-            var high = data['Global Quote']['03. high'];
-            document.getElementById("high").innerHTML = 'High: $'+ high;
+    //         var high = data['Global Quote']['03. high'];
+    //         document.getElementById("high").innerHTML = 'High: $'+ high;
 
-            var low = data['Global Quote']['04. low'];
-            document.getElementById("low").innerHTML = 'Low: $'+ high;
+    //         var low = data['Global Quote']['04. low'];
+    //         document.getElementById("low").innerHTML = 'Low: $'+ high;
 
-            var price = data['Global Quote']['05. price'];
-            document.getElementById("price").innerHTML = '$'+ price;
+    //         var price = data['Global Quote']['05. price'];
+    //         document.getElementById("price").innerHTML = '$'+ price;
 
-            var previousClose = data['Global Quote']['08. previous close'];
-            document.getElementById("prev").innerHTML = 'Prev Close: $'+ price;
+    //         var previousClose = data['Global Quote']['08. previous close'];
+    //         document.getElementById("prev").innerHTML = 'Prev Close: $'+ price;
             
-            var change = data['Global Quote']['09. change'];
-            document.getElementById("change").innerHTML = 'Change: $'+ change;
+    //         var change = data['Global Quote']['09. change'];
+    //         document.getElementById("change").innerHTML = 'Change: $'+ change;
             
-            var changePercent = data['Global Quote']['10. change percent'];
-            document.getElementById("changePercent").innerHTML = 'Change Percent: '+ changePercent;
+    //         var changePercent = data['Global Quote']['10. change percent'];
+    //         document.getElementById("changePercent").innerHTML = 'Change Percent: '+ changePercent;
             
-        }
+    //     }
 
-    });
+    // });
 
     //Code for 
 
