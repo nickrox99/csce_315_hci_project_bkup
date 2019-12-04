@@ -60,6 +60,7 @@ class wikiInfo extends React.Component {
   }
   render(){
     const { error, isLoaded, items } = this.state;
+<<<<<<< HEAD
     console.log(this.state.items);
     console.log(this.state.items[0]);
 	const s = String(this.state.items);
@@ -84,6 +85,9 @@ class wikiInfo extends React.Component {
 		}
 	}
     return result
+=======
+    return "Trending"
+>>>>>>> 61136ea5e3f03e17a60a39f6dcebb6b91d3711f9
   }
 }
 
@@ -98,7 +102,7 @@ class financeInfo extends React.Component {
   }
   
   componentDidMount() {
-    fetch("/search")
+    fetch("/financeAPIcall")
       .then(res => res.json())
       .then(
         result => {
@@ -117,7 +121,7 @@ class financeInfo extends React.Component {
   }
   render(){
     const { error, isLoaded, items } = this.state;
-    //console.log(this.state.items);
+    console.log(this.state.items);
     return "Works";
   }
 }
@@ -195,25 +199,3 @@ class sentimentInfo extends React.Component {
     return String(this.state.items)
   }
 }
-
-
-// class Twitter_search extends Component
-// {
-//   constructor(props)
-//   {
-//     super(props);
-//     this.state = {
-//       data: null,
-//       hits: [],
-//     };
-//   }
-
-//   componentDidMount()
-//   {
-//   }
-//   render()
-//   {
-//     return 'It worked';
-//   }
-// }
-//export default wikiInfo;

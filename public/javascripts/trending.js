@@ -138,15 +138,15 @@ function showDate() {
 
 }
 
+function Test(){
+
+}
+
+
 function loadFinance(){
 
     var request = new XMLHttpRequest();
-    var symbol = 'DJI';
-    var apiKey = '0SE9COWFX0MGZGAE';
-    var functionStockGeneral = 'GLOBAL_QUOTE';
-    var interval = '1min';
-    var url = 'https://www.alphavantage.co/query?function=' + functionStockGeneral + '&symbol=' + symbol + '&interval=' + interval + '&apikey=' + apiKey + '&format=json&callback=?&origin=*';
-
+    var url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=DJIA&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
     request.open('GET', url, true);
     request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     request.onload = function () {
@@ -190,8 +190,6 @@ window.onload = (function () {
 
     const sentimentInfoLocation = document.querySelector('#sentiment');
     ReactDOM.render(e(sentimentInfo),sentimentInfoLocation);
-
-    loadFinance();
 
 
 
