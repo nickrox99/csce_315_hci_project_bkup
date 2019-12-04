@@ -15,17 +15,6 @@ var client = new Twitter({
   app_only_auth: true
 });
 
-// FACEBOOK
-var FB = require('fb');
-FB.init({
-  appId: '424606181825598',
-  appSecret: '648a68b409550875ca18293563231571',
-  autoLogAppEvents: true,
-  xfbml: true,
-  version: 'v5.0'
-});
-
-
 // SENTIMENT
 var Sentiment = require('sentiment');
 var sentiment = new Sentiment();
@@ -135,6 +124,7 @@ app.get('/wikiAPIcall', function (req, res) {
   request.send();  
 });
 
+let global_array_tweets = new Array();
 app.get('/twitterAPIcall', function (req, res) {
 
   console.log("[LOG] /twiterAPIcall started");
@@ -150,9 +140,11 @@ app.get('/twitterAPIcall', function (req, res) {
     if (!error) {
       var tweets = data.statuses;
       var array_tweets = new Array(); 
+      global_array_tweets = [];
       for(var i = 0; i < tweets.length; i++)
       {
         array_tweets.push(tweets[i].text);
+        global_array_tweets.push(tweets[i].text);
         // print out the first tweet
         console.log(tweets[i].text);
         
@@ -187,7 +179,12 @@ app.get('/sentimentAPIcall', function(req, res)
 {
   console.log("[LOG] /sentimentAPIcall started")
 
-  var result = sentiment.analyze(user_search);
+  var tweet_aggregate = "";
+  for(var i = 0; i < global_array_tweets.length; i++)
+  {
+    tweet_aggregate+=(global_array_tweets[i] + " ");
+  }
+  var result = sentiment.analyze(tweet_aggregate);
   console.log(result);
   res.send(result);
 
@@ -196,7 +193,7 @@ app.get('/sentimentAPIcall', function(req, res)
 
 // test route for unit testing
 app.get('/test', function(req, res){
-  res.redirect('/twitterAPIcall');
+  res.redirect('/sentimentAPIcall');
 })
 
 const host = '0.0.0.0';
