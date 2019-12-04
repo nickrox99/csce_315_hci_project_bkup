@@ -45,11 +45,9 @@ app.get('/', function (req, res) {
 
 app.get('/home', function (req, res) {
   res.sendFile(path.join(__dirname + "/views/home.html"));
-  //res.json({tweet: 'Test'});
 });
 
 app.get('/search', function (req, res){
-  //res.send(user_search);
   var search_json = {
     search: "'" + user_search + "'"
   }
