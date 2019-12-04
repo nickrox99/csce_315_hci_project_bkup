@@ -130,11 +130,41 @@ class twitterInfo extends React.Component {
   }
   render(){
     const { error, isLoaded, items } = this.state;
-    console.log(this.state.items);
-    console.log(this.state.items[0]);
-    console.log(String(this.state.items[0]));
-    //var tweet = this.state.items[0];
-    return String(this.state.items[0])
+    //return String(this.state.items[0])
+    return "works"
+  }
+}
+
+class sentimentInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: []
+    };
+  }
+  componentDidMount() {
+    fetch("/sentimentAPIcall")
+      .then(res => res.json())
+      .then(
+        result => {
+          this.setState({
+            isLoaded: true,
+            items: result
+          });
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error: error
+          });
+        }
+      );
+  }
+  render(){
+    const { error, isLoaded, items } = this.state;
+    return String(this.state.items)
   }
 }
 

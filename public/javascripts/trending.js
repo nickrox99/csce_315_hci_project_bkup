@@ -171,13 +171,18 @@ window.onload = (function () {
     // loadTweets();
 
     const wikiInfoLocation = document.querySelector('#wiki_summary');
-    ReactDOM.render(e(wikiInfo),wikiInfoLocation); 
+    //ReactDOM.render(e(wikiInfo),wikiInfoLocation); 
 
     const financeInfoLocation = document.querySelector('#finance_summary');
-    ReactDOM.render(e(financeInfo),financeInfoLocation);
+    //ReactDOM.render(e(financeInfo),financeInfoLocation);
 
-    const twitterInfoLocation = document.querySelector('#"tweets"');
+    const twitterInfoLocation = document.querySelector('#tweets');
     ReactDOM.render(e(twitterInfo),twitterInfoLocation);
+
+    const sentimentInfoLocation = document.querySelector('#sentiment');
+    ReactDOM.render(e(sentimentInfo),sentimentInfoLocation);
+
+
 
 
     console.log("result: " + result);
