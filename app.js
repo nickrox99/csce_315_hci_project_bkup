@@ -15,6 +15,21 @@ var client = new Twitter({
   app_only_auth: true
 });
 
+// FACEBOOK
+var FB = require('fb');
+FB.init({
+  appId: '424606181825598',
+  appSecret: '648a68b409550875ca18293563231571',
+  autoLogAppEvents: true,
+  xfbml: true,
+  version: 'v5.0'
+});
+
+
+// SENTIMENT
+var Sentiment = require('sentiment');
+var sentiment = new Sentiment();
+
 //ar indexRouter = require('./routes/index');
 var ReactDOM = require('react-dom')
 
@@ -154,6 +169,29 @@ app.get('/financeAPIcall', function(req, res){
   // TODO add finance API call logic
 
 });
+
+app.get('/facebookAPIcall', function(req, res)
+{
+  console.log("[LOG] /facebookAPIcall started");
+
+
+
+  // FACEBOOK REQUIRES PAYMENT FOR SEARCHING PUBLIC POSTS
+  
+
+
+
+});
+
+app.get('/sentimentAPIcall', function(req, res)
+{
+  console.log("[LOG] /sentimentAPIcall started")
+
+  var result = sentiment.analyze(user_search);
+  console.log(result);
+  res.send(result);
+
+})
 
 
 // test route for unit testing
