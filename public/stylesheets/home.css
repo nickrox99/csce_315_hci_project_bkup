@@ -51,7 +51,9 @@ input#search-bar{
 
 /* div search bar class */
 .div-search-bar{
+	vertical-align: middle;
 	text-align: center;
+	
 }
 
 /* Add a black background color to the top navigation */
@@ -121,6 +123,18 @@ input#search-bar{
     position: relative;
     top: 15px;
    
+}
+
+.searchButton{
+    position: center;
+    color: white;
+    background-color: #007fb4;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    text-align: center;
+
+
 }
 
 img{
