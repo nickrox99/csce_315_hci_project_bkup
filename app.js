@@ -39,36 +39,45 @@ let user_search = "default";
 //app.use('/', indexRouter);
 
 app.get('/', function (req, res) {
-  console.log("redirecting to home page");
+  console.log("[LOG] redirecting to home page");
   res.redirect('/home');
 });
 
 app.get('/home', function (req, res) {
+
+  console.log("[LOG] /home started");
+
   res.sendFile(path.join(__dirname + "/views/home.html"));
 });
 
 app.get('/search', function (req, res) {
+
+  console.log("[LOG] /search {get} started");
+
   var search_json = {
     search: "'" + user_search + "'"
   }
   res.json(search_json);
   // for testing
-  console.log("user_search: " + user_search);
+  console.log("[LOG] user_search: " + user_search);
 });
 
 
 app.get('/trending.html', function (req, res) {
-  console.log("redirecting to trending page");
+  console.log("[LOG] redirecting to trending page");
   res.redirect('/trending');
 });
 
 app.get('/home.html', function (req, res) {
-  console.log("redirecting to home page");
+  console.log("[LOG] redirecting to home page");
   res.redirect('/home');
 });
 
 // search logic to receive search results from front-end
 app.post('/search', (req, res) => {
+
+  console.log("[LOG] /search {post} started");
+
   if (typeof req.body.bar === 'undefined') {
     res.status(400).json({ error: 'missing paramter bar', data: null });
     return;
