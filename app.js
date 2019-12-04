@@ -65,14 +65,16 @@ app.get('/trending.html', function (req, res) {
 });
 
 // search logic to receive search results from front-end
-app.post('/trending', (req, res) => {
+app.post('/search', (req, res) => {
   if(typeof req.body.bar === 'undefined')
   {
     res.status(400).json({error : 'missing paramter bar', data: null});
     return;
   }
   let bar = req.body.bar;
-  res.status(200).json({error: null, data: bar});
+  user_search = bar;
+  //res.status(200).json({error: null, data: bar});
+  res.end();
 });
 
 app.get('/trending', function (req, res) {
