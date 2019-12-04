@@ -3,10 +3,10 @@ body {
     background: #f6fcff;
 }
 /* Style the search bar and make it bigger */
-input#search-bar{
+input#bar{
     position: relative;
     margin: 0 auto;
-    width: 100%;
+    width: 80%;
     height: 45px;
     padding: 0 20px;
     font-size: 1rem;
@@ -54,11 +54,13 @@ input#search-bar{
 	vertical-align: middle;
 	text-align: center;
 	
+	
 }
 
 /* Add a black background color to the top navigation */
 .topnav {
     background-color: #333;
+    text-align: center;
     overflow: hidden;
     position: relative;
     top: -40px;
@@ -138,9 +140,12 @@ input#search-bar{
 }
 
 img{
-  opacity: 1.0;
+  opacity: 0.75;
    /* For IE8 and earlier */
   background-blend-mode: screen
+  
+  width: 500px;
+  
 }
 
 .form-sub{
