@@ -47,7 +47,7 @@ app.get('/home', function (req, res) {
   res.sendFile(path.join(__dirname + "/views/home.html"));
 });
 
-app.get('/search', function (req, res){
+app.get('/search', function (req, res) {
   var search_json = {
     search: "'" + user_search + "'"
   }
@@ -69,9 +69,8 @@ app.get('/home.html', function (req, res) {
 
 // search logic to receive search results from front-end
 app.post('/search', (req, res) => {
-  if(typeof req.body.bar === 'undefined')
-  {
-    res.status(400).json({error : 'missing paramter bar', data: null});
+  if (typeof req.body.bar === 'undefined') {
+    res.status(400).json({ error: 'missing paramter bar', data: null });
     return;
   }
   let bar = req.body.bar;
@@ -81,26 +80,27 @@ app.post('/search', (req, res) => {
 });
 
 app.get('/trending', function (req, res) {
+
+  console.log("[LOG] /trending started");
+
   res.sendFile(path.join(__dirname + "/views/trending.html"));
 
-  // twitter search
-  client.get('search/tweets', { q: 'apple' }, function (error, data, response) {
-    // TODO: fix results, currently only getting 'null'
-    if (error) {
-      // error message thrown to console
-      console.log("[LOG] No error:  " + data);
-    }
-    if (!error) {
-      console.log("[LOG] Error: " + data);
-    }
-  });
+
+
+  // finance search
+
+
+  // TODO: put finance logic here
+
+});
+
+app.get('/wikiAPIcall', function (req, res) {
+  
+  console.log("[LOG] /wikiAPIcall started");
 
   // wikipedia search
-  console.log("loadWiki() started in trending.js");
   var request = new XMLHttpRequest();
-
-  var query = 'test';
-  var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="' + 'test' + '&format=json&callback=?&origin=*';
+  var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="' + user_search + '&format=json&callback=?&origin=*';
   request.open('GET', url, true);
 
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
@@ -114,11 +114,30 @@ app.get('/trending', function (req, res) {
   }
   request.send();
 
+  res.json(request.responseText);
 
-  // finance search
-  
+});
 
-  // TODO: put finance logic here
+app.get('/twitterAPIcall', function (req, res) {
+
+  console.log("[LOG] /twiterAPIcall started");
+
+  // twitter search
+  client.get('search/tweets', { q: 'apple' }, function (error, data, response) {
+    // TODO: fix results, currently only getting 'null'
+    if (error) {
+      // error message thrown to console
+      console.log("[LOG] No error:  " + data);
+    }
+    if (!error) {
+      console.log("[LOG] Error: " + data);
+    }
+  });
+
+});
+
+app.get('/financeAPIcall', function(req, res){
+  console.log("[LOG] /financeAPIcall started");
 
 });
 
