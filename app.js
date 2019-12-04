@@ -15,6 +15,10 @@ var client = new Twitter({
   app_only_auth: true
 });
 
+// SENTIMENT
+var Sentiment = require('sentiment');
+var sentiment = new Sentiment();
+
 //ar indexRouter = require('./routes/index');
 var ReactDOM = require('react-dom')
 
@@ -120,6 +124,7 @@ app.get('/wikiAPIcall', function (req, res) {
   request.send();  
 });
 
+let global_array_tweets = new Array();
 app.get('/twitterAPIcall', function (req, res) {
 
   console.log("[LOG] /twiterAPIcall started");
@@ -135,9 +140,11 @@ app.get('/twitterAPIcall', function (req, res) {
     if (!error) {
       var tweets = data.statuses;
       var array_tweets = new Array(); 
+      global_array_tweets = [];
       for(var i = 0; i < tweets.length; i++)
       {
         array_tweets.push(tweets[i].text);
+        global_array_tweets.push(tweets[i].text);
         // print out the first tweet
         console.log(tweets[i].text);
         
@@ -155,10 +162,38 @@ app.get('/financeAPIcall', function(req, res){
 
 });
 
+app.get('/facebookAPIcall', function(req, res)
+{
+  console.log("[LOG] /facebookAPIcall started");
+
+
+
+  // FACEBOOK REQUIRES PAYMENT FOR SEARCHING PUBLIC POSTS
+  
+
+
+
+});
+
+app.get('/sentimentAPIcall', function(req, res)
+{
+  console.log("[LOG] /sentimentAPIcall started")
+
+  var tweet_aggregate = "";
+  for(var i = 0; i < global_array_tweets.length; i++)
+  {
+    tweet_aggregate+=(global_array_tweets[i] + " ");
+  }
+  var result = sentiment.analyze(tweet_aggregate);
+  console.log(result);
+  res.send(result);
+
+})
+
 
 // test route for unit testing
 app.get('/test', function(req, res){
-  res.redirect('/twitterAPIcall');
+  res.redirect('/sentimentAPIcall');
 })
 
 const host = '0.0.0.0';
