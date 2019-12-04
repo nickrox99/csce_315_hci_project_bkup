@@ -103,23 +103,25 @@ app.get('/wikiAPIcall', function (req, res) {
   console.log("[LOG] /wikiAPIcall started");
 
   // wikipedia search
+
+  var jsonReponse;
   var request = new XMLHttpRequest();
   var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="' + user_search + '&format=json&callback=?&origin=*';
+  request.responseType = 'json';
   request.open('GET', url, true);
-
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-
-  request.onload = function () {
-
-    // access JSON data
-    //var data = JSON.parse(request.responseText)
-
-    console.log(request.responseText);
+  request.onload = function()
+  {
+    jsonReponse = request.responseText;
+    console.log(jsonReponse);
+    res.send(jsonReponse);
+    
   }
   request.send();
+  
 
-  res.json(request.responseText);
 
+  
 });
 
 app.get('/twitterAPIcall', function (req, res) {
@@ -138,6 +140,7 @@ app.get('/twitterAPIcall', function (req, res) {
       for(var i = 0; i < tweets.length; i++)
       {
         console.log(tweets[i].text);
+        
 
       }
     }
