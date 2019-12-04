@@ -60,9 +60,6 @@ class wikiInfo extends React.Component {
   }
   render(){
     const { error, isLoaded, items } = this.state;
-    console.log(this.state.items);
-    console.log(this.state.items[0]);
-
     return "Trending"
   }
 }
@@ -77,7 +74,7 @@ class financeInfo extends React.Component {
     };
   }
   componentDidMount() {
-    fetch("/search")
+    fetch("/financeAPIcall")
       .then(res => res.json())
       .then(
         result => {
@@ -96,7 +93,7 @@ class financeInfo extends React.Component {
   }
   render(){
     const { error, isLoaded, items } = this.state;
-    //console.log(this.state.items);
+    console.log(this.state.items);
     return "Works";
   }
 }
@@ -130,10 +127,17 @@ class twitterInfo extends React.Component {
   }
   render(){
     const { error, isLoaded, items } = this.state;
-    //return String(this.state.items[0])
-    return "works"
+    const element = 
+      React.createElement('p',{},String(this.state.items[0]),
+      React.createElement('p',{},String(this.state.items[1]),
+      React.createElement('p',{},String(this.state.items[2]),
+      React.createElement('p',{},String(this.state.items[3]),
+      React.createElement('p',{},String(this.state.items[4])
+    )))))
+    return element
   }
 }
+
 
 class sentimentInfo extends React.Component {
   constructor(props) {
@@ -167,25 +171,3 @@ class sentimentInfo extends React.Component {
     return String(this.state.items)
   }
 }
-
-
-// class Twitter_search extends Component
-// {
-//   constructor(props)
-//   {
-//     super(props);
-//     this.state = {
-//       data: null,
-//       hits: [],
-//     };
-//   }
-
-//   componentDidMount()
-//   {
-//   }
-//   render()
-//   {
-//     return 'It worked';
-//   }
-// }
-//export default wikiInfo;

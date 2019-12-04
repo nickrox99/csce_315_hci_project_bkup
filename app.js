@@ -159,6 +159,20 @@ app.get('/financeAPIcall', function(req, res){
   console.log("[LOG] /financeAPIcall started");
 
   // TODO add finance API call logic
+  var jsonReponse;
+  var request = new XMLHttpRequest();
+  var url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=DJIA&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
+  request.responseType = 'json';
+  request.open('GET', url, true);
+  request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+  request.onload = function()
+  {
+    jsonReponse = request.responseText;
+    console.log(jsonReponse);
+    res.json(jsonReponse);
+    
+  }
+  request.send();  
 
 });
 

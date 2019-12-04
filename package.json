@@ -28,5 +28,8 @@
     "twit": "^2.2.11",
     "twitter": "^1.7.1",
     "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {
+    "grunt-jsx": "^0.1.8"
   }
 }

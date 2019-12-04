@@ -138,13 +138,22 @@ function showDate() {
 
 }
 
+function Test(){
 
-function loadTweets(){
-    // const tweet1 = document.querySelector('#tweet1');
-    // ReactDOM.render(e(LikeButton),tweet1);
+}
 
-    // const financeInfo = document.querySelector('#tweet1');
-    // ReactDOM.render(e(GeneralFinanceInfo),financeInfo);
+
+function loadFinance(){
+
+    var request = new XMLHttpRequest();
+    var url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=DJIA&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
+    request.open('GET', url, true);
+    request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    request.onload = function () {
+
+        console.log(request.response);
+    }
+    request.send();
 }
 
 
@@ -171,10 +180,10 @@ window.onload = (function () {
     // loadTweets();
 
     const wikiInfoLocation = document.querySelector('#wiki_summary');
-    //ReactDOM.render(e(wikiInfo),wikiInfoLocation); 
+    ReactDOM.render(e(wikiInfo),wikiInfoLocation); 
 
     const financeInfoLocation = document.querySelector('#finance_summary');
-    //ReactDOM.render(e(financeInfo),financeInfoLocation);
+    ReactDOM.render(e(financeInfo),financeInfoLocation);
 
     const twitterInfoLocation = document.querySelector('#tweets');
     ReactDOM.render(e(twitterInfo),twitterInfoLocation);
