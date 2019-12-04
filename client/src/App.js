@@ -99,6 +99,40 @@ class financeInfo extends React.Component {
   }
 }
 
+class twitterInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: []
+    };
+  }
+  componentDidMount() {
+    fetch("/search")
+      .then(res => res.json())
+      .then(
+        result => {
+          this.setState({
+            isLoaded: true,
+            items: result
+          });
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error: error
+          });
+        }
+      );
+  }
+  render(){
+    const { error, isLoaded, items } = this.state;
+    console.log(this.state.items);
+    return "Works"
+  }
+}
+
 
 // class Twitter_search extends Component
 // {

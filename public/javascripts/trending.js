@@ -174,7 +174,10 @@ window.onload = (function () {
     ReactDOM.render(e(wikiInfo),wikiInfoLocation); 
 
     const financeInfoLocation = document.querySelector('#finance_summary');
-    ReactDOM.render(e(wikiInfo),financeInfoLocation);
+    ReactDOM.render(e(financeInfo),financeInfoLocation);
+
+    const twitterInfoLocation = document.querySelector('#twitter-info');
+    ReactDOM.render(e(twitterInfo),twitterInfoLocation);
 
 
     console.log("result: " + result);
