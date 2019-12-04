@@ -222,13 +222,13 @@ app.get('/sentimentAPIcall', function(req, res)
   var result = sentiment.analyze(tweet_aggregate);
   console.log(result['score']);
   res.send(result['score']);
-})
+});
 
 
 // test route for unit testing
 app.get('/test', function(req, res){
   res.redirect('/sentimentAPIcall');
-})
+});
 
 const host = '0.0.0.0';
 const port = process.env.PORT || 3000;
