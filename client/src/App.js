@@ -138,10 +138,6 @@ class twitterInfo extends React.Component {
       React.createElement('p',{},String(this.state.items[4])
     )))))
     return element
-
-    (
-      
-    );
   }
 }
 
