@@ -8,8 +8,10 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 // TWITTER
 var Twitter = require('twit');
 var client = new Twitter({
-  consumer_key: 'M5KE9w5g3o1nvohfsJoHMpy6p ',
+  consumer_key: 'M5KE9w5g3o1nvohfsJoHMpy6p',
   consumer_secret: 'HyqjN5Mw8LeDwkjmeRRUaiygTRUink6vlH9XzEAeTDFNLcl6vm',
+  access_token: '2255316103-q9bK11fXyV9gblZQasqEfLi2Ob6jrhrnewQE6F3', 
+  access_token_secret: 'J4u5BSyWQiDqIaCMQgr4inkNHtHJOuI1Uvb2V30rVFCDJ',
   app_only_auth: true
 });
 
@@ -125,7 +127,7 @@ app.get('/twitterAPIcall', function (req, res) {
   console.log("[LOG] /twiterAPIcall started");
 
   // twitter search
-  client.get('search/tweets', { q: 'apple' }, function (error, data) {
+  client.get('search/tweets', { q: "'" + user_search + "'" }, function (error, data) {
     // TODO: fix results, currently only getting 'null'
     if (error) {
       // error message thrown to console
@@ -136,6 +138,7 @@ app.get('/twitterAPIcall', function (req, res) {
       for(var i = 0; i < tweets.length; i++)
       {
         console.log(tweets[i].text);
+
       }
     }
   });
