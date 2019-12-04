@@ -32,6 +32,14 @@ const e = React.createElement;
 // }
 
 class wikiInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: []
+    };
+  }
   componentDidMount() {
     fetch("/search")
       .then(res => res.json())
@@ -51,8 +59,8 @@ class wikiInfo extends React.Component {
       );
   }
   render(){
-    //const { error, isLoaded, items } = this.state;
-    //console.log(this.state.items);
+    const { error, isLoaded, items } = this.state;
+    console.log(this.state.items);
     return "Works"
   }
 }
