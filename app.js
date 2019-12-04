@@ -129,17 +129,20 @@ app.get('/twitterAPIcall', function (req, res) {
     // TODO: fix results, currently only getting 'null'
     if (error) {
       // error message thrown to console
-      res.send("Error loading tweets, please try again!");
+      //res.send("Error loading tweets, please try again!");
       console.log("[LOG] ERROR:  " + error);
     }
     if (!error) {
       var tweets = data.statuses;
+      var array_tweets = new Array(); 
       for(var i = 0; i < tweets.length; i++)
       {
-        res.send(tweets[i].text);
+        array_tweets.push(tweets[i].text);
+        // print out the first tweet
         console.log(tweets[i].text);
         
       }
+      res.send(array_tweets);
     }
   });
 
