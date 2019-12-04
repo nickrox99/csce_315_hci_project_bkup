@@ -37,6 +37,8 @@ function loadWiki() {
 
         console.log(request.response);
     }
+
+    
     request.send();
 
     // document.getElementById("wiki_summary").innerHTML = context;
