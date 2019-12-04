@@ -129,6 +129,7 @@ app.get('/twitterAPIcall', function (req, res) {
     // TODO: fix results, currently only getting 'null'
     if (error) {
       // error message thrown to console
+      res.send("Error loading tweets, please try again!");
       console.log("[LOG] ERROR:  " + error);
     }
     if (!error) {
