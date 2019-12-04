@@ -51,8 +51,8 @@ class wikiInfo extends React.Component {
       );
   }
   render(){
-    const { error, isLoaded, items } = this.state;
-    console.log(this.state.items);
+    //const { error, isLoaded, items } = this.state;
+    //console.log(this.state.items);
     return "Works"
   }
 }
@@ -77,4 +77,4 @@ class wikiInfo extends React.Component {
 //     return 'It worked';
 //   }
 // }
-export default wikiInfo;
+//export default wikiInfo;
