@@ -64,6 +64,11 @@ app.get('/trending.html', function (req, res) {
   res.redirect('/trending');
 });
 
+app.get('/home.html', function (req, res) {
+  console.log("redirecting to home page");
+  res.redirect('/home');
+});
+
 // search logic to receive search results from front-end
 app.post('/search', (req, res) => {
   if(typeof req.body.bar === 'undefined')
@@ -74,7 +79,7 @@ app.post('/search', (req, res) => {
   let bar = req.body.bar;
   user_search = bar;
   //res.status(200).json({error: null, data: bar});
-  res.end();
+  res.redirect('/trending');
 });
 
 app.get('/trending', function (req, res) {
