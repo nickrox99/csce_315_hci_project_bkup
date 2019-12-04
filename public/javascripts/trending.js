@@ -176,7 +176,7 @@ window.onload = (function () {
     const financeInfoLocation = document.querySelector('#finance_summary');
     ReactDOM.render(e(financeInfo),financeInfoLocation);
 
-    const twitterInfoLocation = document.querySelector('#twitter-info');
+    const twitterInfoLocation = document.querySelector('#"tweets"');
     ReactDOM.render(e(twitterInfo),twitterInfoLocation);
 
 

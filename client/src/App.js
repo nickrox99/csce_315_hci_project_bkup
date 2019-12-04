@@ -41,7 +41,7 @@ class wikiInfo extends React.Component {
     };
   }
   componentDidMount() {
-    fetch("/search")
+    fetch("/wikiAPIcall")
       .then(res => res.json())
       .then(
         result => {
@@ -61,7 +61,9 @@ class wikiInfo extends React.Component {
   render(){
     const { error, isLoaded, items } = this.state;
     console.log(this.state.items);
-    return "Works"
+    console.log(this.state.items[0]);
+
+    return "Trending"
   }
 }
 
@@ -94,8 +96,8 @@ class financeInfo extends React.Component {
   }
   render(){
     const { error, isLoaded, items } = this.state;
-    console.log(this.state.items);
-    return "Works"
+    //console.log(this.state.items);
+    return "Works";
   }
 }
 
@@ -109,7 +111,7 @@ class twitterInfo extends React.Component {
     };
   }
   componentDidMount() {
-    fetch("/search")
+    fetch("/twitterAPIcall")
       .then(res => res.json())
       .then(
         result => {
@@ -129,7 +131,10 @@ class twitterInfo extends React.Component {
   render(){
     const { error, isLoaded, items } = this.state;
     console.log(this.state.items);
-    return "Works"
+    console.log(this.state.items[0]);
+    console.log(String(this.state.items[0]));
+    //var tweet = this.state.items[0];
+    return String(this.state.items[0])
   }
 }
 
