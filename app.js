@@ -53,7 +53,7 @@ app.get('/search', function (req, res){
   var search_json = {
     search: "'" + user_search + "'"
   }
-  res.send(search_json);
+  res.json(search_json);
   // for testing
   console.log("user_search: " + user_search);
 });
