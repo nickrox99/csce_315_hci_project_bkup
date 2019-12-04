@@ -114,14 +114,10 @@ app.get('/wikiAPIcall', function (req, res) {
   {
     jsonReponse = request.responseText;
     console.log(jsonReponse);
-    res.send(jsonReponse);
+    res.json(jsonReponse);
     
   }
-  request.send();
-  
-
-
-  
+  request.send();  
 });
 
 app.get('/twitterAPIcall', function (req, res) {
