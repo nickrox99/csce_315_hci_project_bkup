@@ -62,8 +62,28 @@ class wikiInfo extends React.Component {
     const { error, isLoaded, items } = this.state;
     console.log(this.state.items);
     console.log(this.state.items[0]);
-
-    return "Trending"
+	const s = String(this.state.items);
+	var str = s.substr(4)
+	
+	var result = str.replace(/\[/g,'').replace(/\]/,'').replace(/\\/g,'');
+	var resultArr = result.split('"');
+	
+	for( var i = 0; i < resultArr.length; i++){ 
+		if ( resultArr[i] === ",") {
+			resultArr.splice(i, 1); 
+		}
+	}
+	console.log(resultArr);
+	
+	var max = 0;
+	for (var i = 0; i < resultArr.length; i++){
+		var l = String(resultArr[i]).length;
+		if (l > max){
+			max = l;
+			result = String(resultArr[i]);
+		}
+	}
+    return result
   }
 }
 
@@ -76,6 +96,7 @@ class financeInfo extends React.Component {
       items: []
     };
   }
+  
   componentDidMount() {
     fetch("/search")
       .then(res => res.json())
