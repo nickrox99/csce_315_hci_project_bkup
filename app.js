@@ -220,12 +220,8 @@ app.get('/sentimentAPIcall', function(req, res)
     tweet_aggregate+=(global_array_tweets[i] + " ");
   }
   var result = sentiment.analyze(tweet_aggregate);
-  console.log(result);
-  res.send(result);
-
-
-  
-
+  console.log(result['score']);
+  res.send(result['score']);
 })
 
 
