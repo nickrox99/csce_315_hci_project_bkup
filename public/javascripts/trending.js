@@ -37,8 +37,6 @@ function loadWiki() {
 
         console.log(request.response);
     }
-
-    
     request.send();
 
     // document.getElementById("wiki_summary").innerHTML = context;
@@ -173,7 +171,13 @@ window.onload = (function () {
     // loadTweets();
 
     const wikiInfoLocation = document.querySelector('#wiki_summary');
-    ReactDOM.render(e(wikiInfo),wikiInfoLocation);
+    ReactDOM.render(e(wikiInfo),wikiInfoLocation); 
+
+    const financeInfoLocation = document.querySelector('#finance_summary');
+    ReactDOM.render(e(financeInfo),financeInfoLocation);
+
+    const twitterInfoLocation = document.querySelector('#twitter-info');
+    ReactDOM.render(e(twitterInfo),twitterInfoLocation);
 
 
     console.log("result: " + result);
