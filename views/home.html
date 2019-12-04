@@ -17,18 +17,17 @@
     </div>
     <!--Search bar -->
     <div class="div-search-bar">
-        <form id='search_form'>
-            <div class='form-user_search'>
-			<div class="search">
-				<input type="text" class="searchTerm" placeholder="What are you looking for?">
-				<button type="submit" class="searchButton">
-				<i class="fa fa-search"></i>
+        </form>
+		<form method="POST" action="/search">
+		<input type="text" id="bar" name="bar" placeholder="What are you looking for?" />
+		<button type="submit">Send</button>
+		</form>
             </div>
             <div class='form-sub'>
 				<a href="./trending.html">See what's trending</a>
 				
             </div>
-        </form>
+        
 
     </div>
 	
