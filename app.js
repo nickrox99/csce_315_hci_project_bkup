@@ -135,9 +135,9 @@ app.get('/twitterAPIcall', function (req, res) {
       var tweets = data.statuses;
       for(var i = 0; i < tweets.length; i++)
       {
+        res.send(tweets[i].text);
         console.log(tweets[i].text);
         
-
       }
     }
   });
