@@ -19,13 +19,11 @@ var client = new Twitter({
 var Sentiment = require('sentiment');
 var sentiment = new Sentiment();
 
-//ar indexRouter = require('./routes/index');
 var ReactDOM = require('react-dom')
 
 var app = express();
 
 // view engine setup
-//app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 app.use(express.static(path.join(__dirname)));
@@ -39,10 +37,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 let user_search = "default";
-
-// app.use('/public/javascripts/', express.static(__dirname + '/public/javascripts'));
-
-//app.use('/', indexRouter);
 
 app.get('/', function (req, res) {
   console.log("[LOG] redirecting to home page");
