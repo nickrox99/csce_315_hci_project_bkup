@@ -160,8 +160,11 @@
         left: 4%;
         line-height: normal;
         padding: 10px;
+        height: auto; 
 
     }
+
+
 
     .li-trend-list {
         text-align: center;
@@ -186,6 +189,7 @@
         width: 40%;
         border: 1px solid black;
         position: relative;
+        
     }
 
     .div-additional-API {
@@ -194,6 +198,8 @@
         border: 1px solid black;
         position: relative;
         top: -40px;
+        height: auto;
+        width: auto;
     }
 
     .h3-sentiment-API {
@@ -205,6 +211,7 @@
         position: relative;
         left: 18%;
         top: -40px;
+        height: auto;
     }
 
    
