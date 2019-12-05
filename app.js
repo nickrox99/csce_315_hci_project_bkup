@@ -19,13 +19,11 @@ var client = new Twitter({
 var Sentiment = require('sentiment');
 var sentiment = new Sentiment();
 
-//ar indexRouter = require('./routes/index');
 var ReactDOM = require('react-dom')
 
 var app = express();
 
 // view engine setup
-//app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 app.use(express.static(path.join(__dirname)));
@@ -39,10 +37,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 let user_search = "default";
-
-// app.use('/public/javascripts/', express.static(__dirname + '/public/javascripts'));
-
-//app.use('/', indexRouter);
 
 app.get('/', function (req, res) {
   console.log("[LOG] redirecting to home page");
@@ -179,19 +173,16 @@ app.get('/financeAPIcall', function(req, res){
 app.get('/graphFinanceAPIcall', function(req, res){
   console.log("[LOG] /graphFinanceAPIcall started");
 
-  // TODO add finance API call logic
   var jsonReponse;
   var request = new XMLHttpRequest();
-  var url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=DJIA&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
+  var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=DJIA&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
   request.responseType = 'json';
   request.open('GET', url, true);
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   request.onload = function()
   {
-    jsonReponse = request.responseText;
-    console.log(jsonReponse);
+    jsonReponse = JSON.parse(request.responseText);
     res.json(jsonReponse);
-    
   }
   request.send();  
 
@@ -201,12 +192,8 @@ app.get('/facebookAPIcall', function(req, res)
 {
   console.log("[LOG] /facebookAPIcall started");
 
-
-
   // FACEBOOK REQUIRES PAYMENT FOR SEARCHING PUBLIC POSTS
   
-
-
 
 });
 
@@ -217,17 +204,17 @@ app.get('/sentimentAPIcall', function(req, res)
   var tweet_aggregate = "";
   for(var i = 0; i < global_array_tweets.length; i++)
   {
-    tweet_aggregate+=(global_array_tweets[i] + " ");
+    tweet_aggregate+=(global_array_tweets[i] + " ");  
   }
   var result = sentiment.analyze(tweet_aggregate);
   console.log(result['score']);
-  res.send(result['score']);
+  res.json(result['score']);
 });
 
 
 // test route for unit testing
 app.get('/test', function(req, res){
-  res.redirect('/sentimentAPIcall');
+  //res.redirect('/sentimentAPIcall');
 });
 
 const host = '0.0.0.0';
