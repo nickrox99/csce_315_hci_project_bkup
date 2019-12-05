@@ -29,7 +29,20 @@ class wikiInfo extends React.Component {
   }
   render(){
     const { error, isLoaded, items } = this.state;
-    return "Trending"
+	var s = String(this.state.items);
+	var strArr = s.substr(4).split('\"');
+	
+	var max = 0;
+	var result = "";
+	
+	for(var i = 0; i < strArr.length; i++){
+		if(String(strArr[i]).length > max){
+			result = String(strArr[i])
+			max = strArr[i].length
+		}
+	}		
+	
+    return result.replace(/\"/g,'')
   }
 }
 
