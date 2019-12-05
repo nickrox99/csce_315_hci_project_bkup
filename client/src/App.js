@@ -170,6 +170,7 @@ class twitterInfo extends React.Component {
       React.createElement('p',{},String(this.state.items[3]),
       React.createElement('p',{},String(this.state.items[4])
     )))))
+    // TODO look into styling the element to make it look better
     return element
   }
 }
@@ -202,6 +203,7 @@ class sentimentInfo extends React.Component {
         }
       );
   }
+  // TODO add a color coding scale
   render(){
     const { error, isLoaded, items } = this.state;
     return String(this.state.items)
