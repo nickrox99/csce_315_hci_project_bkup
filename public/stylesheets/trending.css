@@ -126,6 +126,8 @@
         border: 1px solid black;
         border-radius: 25px;
         background: white;
+        text-shadow: #111;
+
     }
 
     .h1-facebook-title {
@@ -133,6 +135,7 @@
         border: 1px solid black;
         border-radius: 25px;
         background: white;
+        text-shadow: #111;
     }
 
     .h1-additional-information-title {
@@ -140,6 +143,7 @@
         border: 1px solid black;
         border-radius: 25px;
         background: white;
+        text-shadow: #111;
     }
 
     .h3-wiki-sumary-title {
@@ -154,6 +158,8 @@
         width: 93%;
         position: relative;
         left: 4%;
+        line-height: normal;
+        padding: 10px;
 
     }
 
