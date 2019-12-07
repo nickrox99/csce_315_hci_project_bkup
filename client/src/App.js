@@ -116,8 +116,37 @@ class financeGraphInfo extends React.Component {
   }
   render(){
     const { error, isLoaded, items } = this.state;
-    console.log(this.state.items)
-    console.log(this.state.items)
+    var data = String(this.state.items)
+
+    //console.log(data)
+    var correctedData = data.replace(/"/g,'').replace(/{/g,'').replace(/}/g,'').replace("Meta Data:",'').replace("1. Information: Daily Prices (open, high, low, close) and Volumes,",'')
+    .replace("2. Symbol: DJIA,",'').replace("3. Last Refreshed: 2019-12-04,",'').replace("4. Output Size: Compact,",'').replace("5. Time Zone: US/Eastern",'').replace(/},/g,'')
+    .replace("Time Series (Daily):","").replace(/     1. open:/g,"").replace(/     2. high:/g,"").replace(/     3. low:/g,"").replace(/     4. close:/g,"")
+    .replace(/     3. low:/g,"").replace(/     5. volume:/g,"").replace(/:/g,',').replace(/    /g,'').replace(/         /g,'').replace(',','').replace('3. Last Refreshed 2019-12-06','').replace(',','')
+    .replace(',','').replace(/\s/g, '');
+
+    //console.log(correctedData)
+    var dataArray = correctedData.split(',')
+    //console.log(dataArray)
+
+    var dateArray = []
+    var priceArray = []
+    var dateStartCounter = 0
+    var priceStartCounter = 4
+  
+    for (var i = 0; i < 100; i++){
+      dateArray.push(dataArray[dateStartCounter])
+      priceArray.push(parseFloat(dataArray[priceStartCounter]))
+
+      dateStartCounter+=6
+      priceStartCounter+=6
+    }
+    //console.log(dateArray)
+    //console.log(priceArray)
+
+
+
+    //var correctedDataArray = correctedData.split(",")
     return "Finance Graphs"
   }
 }

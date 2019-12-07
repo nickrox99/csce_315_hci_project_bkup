@@ -181,7 +181,7 @@ app.get('/graphFinanceAPIcall', function(req, res){
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   request.onload = function()
   {
-    jsonReponse = JSON.parse(request.responseText);
+    jsonReponse = request.responseText;
     res.json(jsonReponse);
   }
   request.send();  
