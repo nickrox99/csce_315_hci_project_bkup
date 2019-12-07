@@ -160,7 +160,7 @@ function loadFinance(){
 window.onload = (function () {
 
     getNewSearchResult();
-
+    
     // show date works
     showDate();
 

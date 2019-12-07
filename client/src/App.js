@@ -132,6 +132,10 @@ class financeGraphInfo extends React.Component {
     var data = String(this.state.items)
 
     //console.log(data)
+    var symbol = data.replace(/"/g,'').replace(/{/g,'').replace(/}/g,'').replace("Meta Data:",'').replace("1. Information: Daily Prices (open, high, low, close) and Volumes,",'').replace("2. Symbol: ",'').replace(/\s/g, '');
+    var symbol = symbol.substring(0,4);
+    console.log(symbol)
+
     var correctedData = data.replace(/"/g,'').replace(/{/g,'').replace(/}/g,'').replace("Meta Data:",'').replace("1. Information: Daily Prices (open, high, low, close) and Volumes,",'')
     .replace("2. Symbol: DJIA,",'').replace("3. Last Refreshed: 2019-12-04,",'').replace("4. Output Size: Compact,",'').replace("5. Time Zone: US/Eastern",'').replace(/},/g,'')
     .replace("Time Series (Daily):","").replace(/     1. open:/g,"").replace(/     2. high:/g,"").replace(/     3. low:/g,"").replace(/     4. close:/g,"")
@@ -162,17 +166,22 @@ class financeGraphInfo extends React.Component {
       type: 'line',
       
       data: {
-        labels: dateArray,
+        labels: dateArray.reverse(),
         datasets: [{
             data: priceArray,
+            backgroundColor :['rgba(75, 192, 192, 0.2)'], 
+            borderColor: ['rgba(75, 192, 192, 1)']
         }]
-    },
+      },
 
       options: {
+        legend: {
+          display: false
+        },
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true
+                  legend: false
                 }
             }]
         }

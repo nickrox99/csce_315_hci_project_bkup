@@ -149,13 +149,15 @@ app.get('/twitterAPIcall', function (req, res) {
 
 });
 
+
 app.get('/financeAPIcall', function(req, res){
   console.log("[LOG] /financeAPIcall started");
-
+  
+  var symbol = user_search
   // TODO add finance API call logic
   var jsonReponse;
   var request = new XMLHttpRequest();
-  var url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=DJIA&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
+  var url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol='+ symbol + '&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
   request.responseType = 'json';
   request.open('GET', url, true);
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
@@ -173,9 +175,10 @@ app.get('/financeAPIcall', function(req, res){
 app.get('/graphFinanceAPIcall', function(req, res){
   console.log("[LOG] /graphFinanceAPIcall started");
 
+  var symbol = user_search
   var jsonReponse;
   var request = new XMLHttpRequest();
-  var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=DJIA&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
+  var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol='+ symbol + '&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
   request.responseType = 'json';
   request.open('GET', url, true);
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
