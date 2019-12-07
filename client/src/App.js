@@ -131,18 +131,18 @@ class financeGraphInfo extends React.Component {
     const { error, isLoaded, items } = this.state;
     var data = String(this.state.items)
 
-    //console.log(data)
+    console.log(data)
     var symbol = data.replace(/"/g,'').replace(/{/g,'').replace(/}/g,'').replace("Meta Data:",'').replace("1. Information: Daily Prices (open, high, low, close) and Volumes,",'').replace("2. Symbol: ",'').replace(/\s/g, '');
     var symbol = symbol.substring(0,4);
     console.log(symbol)
 
     var correctedData = data.replace(/"/g,'').replace(/{/g,'').replace(/}/g,'').replace("Meta Data:",'').replace("1. Information: Daily Prices (open, high, low, close) and Volumes,",'')
-    .replace("2. Symbol: DJIA,",'').replace("3. Last Refreshed: 2019-12-04,",'').replace("4. Output Size: Compact,",'').replace("5. Time Zone: US/Eastern",'').replace(/},/g,'')
+    .replace("2. Symbol: ",'').replace("3. Last Refreshed: ",'').replace("4. Output Size: Compact,",'').replace("5. Time Zone: US/Eastern",'').replace(/},/g,'')
     .replace("Time Series (Daily):","").replace(/     1. open:/g,"").replace(/     2. high:/g,"").replace(/     3. low:/g,"").replace(/     4. close:/g,"")
     .replace(/     3. low:/g,"").replace(/     5. volume:/g,"").replace(/:/g,',').replace(/    /g,'').replace(/         /g,'').replace(',','').replace('3. Last Refreshed 2019-12-06','').replace(',','')
-    .replace(',','').replace(/\s/g, '');
+    .replace(',','').replace(/\s/g, '').substring(14);
 
-    //console.log(correctedData)
+    console.log(correctedData)
     var dataArray = correctedData.split(',')
     //console.log(dataArray)
 
