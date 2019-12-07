@@ -23,6 +23,8 @@
         top: -40px;
         height:60px;
         color: white;
+        padding-top: 10px;
+        padding-bottom: 30px;
         
     }
 
@@ -86,6 +88,10 @@
         height: 525px;
         position: relative;
         top: -70px;
+        box-shadow: 5px 8px #888888;
+        border: 1px solid black;
+        border-radius: 25px; 
+        height: auto;
     }
 
     /* twitter and facebook box */
@@ -94,6 +100,12 @@
         width: 22%;
         margin-left: 3%;
         margin-left: 3%;
+        box-shadow: 5px 8px #888888;
+        border: 1px solid black;
+        border-radius: 25px;    
+        min-height: 500px; 
+        height: auto;   
+        
 
     }
 
@@ -113,14 +125,27 @@
 
     .h1-twitter-title {
         text-align: center;
+        border: 1px solid black;
+        border-radius: 25px;
+        background: white;
+        text-shadow: #111;
+
     }
 
     .h1-facebook-title {
         text-align: center;
+        border: 1px solid black;
+        border-radius: 25px;
+        background: white;
+        text-shadow: #111;
     }
 
     .h1-additional-information-title {
         text-align: center;
+        border: 1px solid black;
+        border-radius: 25px;
+        background: white;
+        text-shadow: #111;
     }
 
     .h3-wiki-sumary-title {
@@ -129,13 +154,19 @@
 
     .p-wiki-summary-description {
         border: 1px solid black;
+        border-radius: 25px;
         line-height: 100px;
         text-align: center;
         width: 93%;
         position: relative;
         left: 4%;
+        line-height: normal;
+        padding: 10px;
+        height: auto; 
 
     }
+
+
 
     .li-trend-list {
         text-align: center;
@@ -160,6 +191,7 @@
         width: 40%;
         border: 1px solid black;
         position: relative;
+        
     }
 
     .div-additional-API {
@@ -168,6 +200,7 @@
         border: 1px solid black;
         position: relative;
         top: -40px;
+        height: auto;
     }
 
     .h3-sentiment-API {
@@ -179,6 +212,7 @@
         position: relative;
         left: 18%;
         top: -40px;
+        height: auto;
     }
 
    
