@@ -157,10 +157,30 @@ class financeGraphInfo extends React.Component {
     //console.log(dateArray)
     //console.log(priceArray)
 
+    var ctx = document.getElementById('myChart');
+    var myLineChart = new Chart(ctx, {
+      type: 'line',
+      
+      data: {
+        labels: dateArray,
+        datasets: [{
+            data: priceArray,
+        }]
+    },
+
+      options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+      }
+    });
 
 
-    //var correctedDataArray = correctedData.split(",")
-    return "Finance Graphs"
+    return ''
   }
 }
 class twitterInfo extends React.Component {
