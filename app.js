@@ -174,22 +174,6 @@ app.get('/financeAPIcall', function (req, res) {
 app.get('/graphFinanceAPIcall', function (req, res) {
   console.log("[LOG] /graphFinanceAPIcall started");
 
-  var symbol = user_search
-  var jsonReponse;
-  var request = new XMLHttpRequest();
-  var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + symbol + '&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
-  request.responseType = 'json';
-  request.open('GET', url, true);
-  request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-  request.onload = function () {
-    jsonReponse = request.responseText;
-    res.json(jsonReponse);
-  }
-  request.send();
-
-});
-
-api.get('/stockTickerLookipAPI', function (req, res) {
 
   console.log("[LOG] /graphFinanceAPIcall started");
   // searches by both symbol and security
@@ -205,7 +189,22 @@ api.get('/stockTickerLookipAPI', function (req, res) {
         user_search_stock_ticker = securities[0].symbol;
       }
     });
-})
+
+  var symbol = user_search_stock_ticker;
+  var jsonReponse;
+  var request = new XMLHttpRequest();
+  var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + symbol + '&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
+  request.responseType = 'json';
+  request.open('GET', url, true);
+  request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+  request.onload = function () {
+    jsonReponse = request.responseText;
+    res.json(jsonReponse);
+  }
+  request.send();
+
+});
+
 
 app.get('/facebookAPIcall', function (req, res) {
   console.log("[LOG] /facebookAPIcall started");
