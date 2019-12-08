@@ -127,10 +127,10 @@ app.get('/wikiAPIcall', function (req, res) {
 let global_array_tweets = new Array();
 app.get('/twitterAPIcall', function (req, res) {
 
-  console.log("[LOG] /twiterAPIcall started");
+  console.log("[LOG] /twitterAPIcall started");
 
   // twitter search
-  client.get('search/tweets', { q: "'" + user_search + "'" }, function (error, data) {
+  client.get('search/tweets', { q: "'" + user_search + "'", lang: "en", result_type: "popular" }, function (error, data) {
     // TODO: fix results, currently only getting 'null'
     if (error) {
       // error message thrown to console
@@ -158,8 +158,13 @@ app.get('/twitterAPIcall', function (req, res) {
 app.get('/financeAPIcall', function (req, res) {
   console.log("[LOG] /financeAPIcall started");
 
-  var symbol = user_search
-  // TODO add finance API call logic
+  var symbol = user_search;
+
+  if(symbol.length > 4)
+  {
+    symbol = "DJIA";
+  }
+  console.log("[LOG] financeAPIcall -> " + symbol);
   var jsonReponse;
   var request = new XMLHttpRequest();
   var url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=' + symbol + '&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
@@ -183,18 +188,11 @@ app.get('/graphFinanceAPIcall', function (req, res) {
   console.log("[LOG] /graphFinanceAPIcall started");
   // searches by both symbol and security
 
-  StockSymbolLookup.searchAll(user_search, 5)
-    .then((securities) => {
-      // securities is an array with max length of maxEntries.
-      // Each element of the array is an object representing one security.
-      // Symbol can be gotten via securities[INDEX].symbol.
-      // Security Name can be gotten via securities[INDEX].securityName.
-      if (securities) {
-        user_search_stock_ticker = securities[0].symbol;
-      }
-    });
-
-  var symbol = user_search_stock_ticker;
+  var symbol = user_search;
+  if(symbol.length > 4)
+  {
+    symbol = "DJIA";
+  }
   var jsonReponse;
   var request = new XMLHttpRequest();
   var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + symbol + '&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
