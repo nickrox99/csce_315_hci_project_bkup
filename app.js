@@ -80,7 +80,7 @@ app.get('/home.html', function (req, res) {
 });
 
 // search logic to receive search results from front-end
-app.get('/search', (req, res) => {
+app.post('/search', (req, res) => {
 
   console.log("[LOG] /search {post} started");
 
