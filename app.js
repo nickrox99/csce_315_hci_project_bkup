@@ -1,8 +1,13 @@
+// server middleware
 var express = require('express');
+// path module
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+// REST API driver
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+// Stock - Security Converter
+var StockSymbolLookup = require('stock-symbol-lookup');
 
 
 // TWITTER
@@ -10,7 +15,7 @@ var Twitter = require('twit');
 var client = new Twitter({
   consumer_key: 'M5KE9w5g3o1nvohfsJoHMpy6p',
   consumer_secret: 'HyqjN5Mw8LeDwkjmeRRUaiygTRUink6vlH9XzEAeTDFNLcl6vm',
-  access_token: '2255316103-q9bK11fXyV9gblZQasqEfLi2Ob6jrhrnewQE6F3', 
+  access_token: '2255316103-q9bK11fXyV9gblZQasqEfLi2Ob6jrhrnewQE6F3',
   access_token_secret: 'J4u5BSyWQiDqIaCMQgr4inkNHtHJOuI1Uvb2V30rVFCDJ',
   app_only_auth: true
 });
@@ -37,6 +42,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 let user_search = "default";
+let user_search_stock_ticker = "DJIA";
 
 app.get('/', function (req, res) {
   console.log("[LOG] redirecting to home page");
@@ -50,7 +56,7 @@ app.get('/home', function (req, res) {
   res.sendFile(path.join(__dirname + "/views/home.html"));
 });
 
-app.get('/search', function (req, res) {
+/* app.get('/search', function (req, res) {
 
   console.log("[LOG] /search {get} started");
 
@@ -60,7 +66,7 @@ app.get('/search', function (req, res) {
   res.json(search_json);
   // for testing
   console.log("[LOG] user_search: " + user_search);
-});
+}); */
 
 
 app.get('/trending.html', function (req, res) {
@@ -74,7 +80,7 @@ app.get('/home.html', function (req, res) {
 });
 
 // search logic to receive search results from front-end
-app.post('/search', (req, res) => {
+app.get('/search', (req, res) => {
 
   console.log("[LOG] /search {post} started");
 
@@ -97,7 +103,7 @@ app.get('/trending', function (req, res) {
 });
 
 app.get('/wikiAPIcall', function (req, res) {
-  
+
   console.log("[LOG] /wikiAPIcall started");
 
   // wikipedia search
@@ -108,14 +114,13 @@ app.get('/wikiAPIcall', function (req, res) {
   request.responseType = 'json';
   request.open('GET', url, true);
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-  request.onload = function()
-  {
+  request.onload = function () {
     jsonReponse = request.responseText;
     console.log(jsonReponse);
     res.json(jsonReponse);
-    
+
   }
-  request.send();  
+  request.send();
 });
 
 let global_array_tweets = new Array();
@@ -133,15 +138,14 @@ app.get('/twitterAPIcall', function (req, res) {
     }
     if (!error) {
       var tweets = data.statuses;
-      var array_tweets = new Array(); 
+      var array_tweets = new Array();
       global_array_tweets = [];
-      for(var i = 0; i < tweets.length; i++)
-      {
+      for (var i = 0; i < tweets.length; i++) {
         array_tweets.push(tweets[i].text);
         global_array_tweets.push(tweets[i].text);
         // print out the first tweet
         console.log(tweets[i].text);
-        
+
       }
       res.send(array_tweets);
     }
@@ -149,62 +153,76 @@ app.get('/twitterAPIcall', function (req, res) {
 
 });
 
-app.get('/financeAPIcall', function(req, res){
+
+app.get('/financeAPIcall', function (req, res) {
   console.log("[LOG] /financeAPIcall started");
 
+  var symbol = user_search
   // TODO add finance API call logic
   var jsonReponse;
   var request = new XMLHttpRequest();
-  var url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=DJIA&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
+  var url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=' + symbol + '&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
   request.responseType = 'json';
   request.open('GET', url, true);
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-  request.onload = function()
-  {
+  request.onload = function () {
     jsonReponse = request.responseText;
     console.log(jsonReponse);
     res.json(jsonReponse);
-    
+
   }
-  request.send();  
+  request.send();
 
 });
 
-app.get('/graphFinanceAPIcall', function(req, res){
+app.get('/graphFinanceAPIcall', function (req, res) {
   console.log("[LOG] /graphFinanceAPIcall started");
 
+
+  console.log("[LOG] /graphFinanceAPIcall started");
+  // searches by both symbol and security
+
+  StockSymbolLookup.searchAll(user_search, 5)
+    .then((securities) => {
+      // securities is an array with max length of maxEntries.
+      // Each element of the array is an object representing one security.
+      // Symbol can be gotten via securities[INDEX].symbol.
+      // Security Name can be gotten via securities[INDEX].securityName.
+      if (securities) {
+        user_search_stock_ticker = securities[0].symbol;
+      }
+    });
+
+  var symbol = user_search_stock_ticker;
   var jsonReponse;
   var request = new XMLHttpRequest();
-  var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=DJIA&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
+  var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + symbol + '&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
   request.responseType = 'json';
   request.open('GET', url, true);
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-  request.onload = function()
-  {
-    jsonReponse = JSON.parse(request.responseText);
+  request.onload = function () {
+    jsonReponse = request.responseText;
     res.json(jsonReponse);
   }
-  request.send();  
+  request.send();
 
 });
 
-app.get('/facebookAPIcall', function(req, res)
-{
+
+app.get('/facebookAPIcall', function (req, res) {
   console.log("[LOG] /facebookAPIcall started");
 
   // FACEBOOK REQUIRES PAYMENT FOR SEARCHING PUBLIC POSTS
-  
+
 
 });
 
-app.get('/sentimentAPIcall', function(req, res)
-{
+app.get('/sentimentAPIcall', function (req, res) {
   console.log("[LOG] /sentimentAPIcall started")
 
   var tweet_aggregate = "";
-  for(var i = 0; i < global_array_tweets.length; i++)
-  {
-    tweet_aggregate+=(global_array_tweets[i] + " ");  
+  for (var i = 0; i < global_array_tweets.length; i++) {
+    tweet_aggregate += (global_array_tweets[i] + " ");
   }
   var result = sentiment.analyze(tweet_aggregate);
   console.log(result['score']);
@@ -213,7 +231,7 @@ app.get('/sentimentAPIcall', function(req, res)
 
 
 // test route for unit testing
-app.get('/test', function(req, res){
+app.get('/test', function (req, res) {
   //res.redirect('/sentimentAPIcall');
 });
 
