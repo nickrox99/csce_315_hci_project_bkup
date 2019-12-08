@@ -24,6 +24,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "sentiment": "^5.0.2",
+    "stock-symbol-lookup": "^0.2.1",
     "twi": "^0.1.4",
     "twit": "^2.2.11",
     "twitter": "^1.7.1",
