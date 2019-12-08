@@ -56,7 +56,7 @@ app.get('/home', function (req, res) {
   res.sendFile(path.join(__dirname + "/views/home.html"));
 });
 
-/* app.get('/search', function (req, res) {
+app.get('/search', function (req, res) {
 
   console.log("[LOG] /search {get} started");
 
@@ -66,7 +66,7 @@ app.get('/home', function (req, res) {
   res.json(search_json);
   // for testing
   console.log("[LOG] user_search: " + user_search);
-}); */
+});
 
 
 app.get('/trending.html', function (req, res) {
@@ -91,6 +91,7 @@ app.post('/search', (req, res) => {
   }
   let bar = req.body.bar;
   user_search = bar;
+
   //res.status(200).json({error: null, data: bar});
   res.redirect('/trending');
 });
