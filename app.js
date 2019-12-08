@@ -1,8 +1,12 @@
+// server middleware
 var express = require('express');
+// path module
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+// REST API driver
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+// Stock - Security Converter
 var StockSymbolLookup = require('stock-symbol-lookup');
 
 
@@ -52,7 +56,7 @@ app.get('/home', function (req, res) {
   res.sendFile(path.join(__dirname + "/views/home.html"));
 });
 
-app.get('/search', function (req, res) {
+/* app.get('/search', function (req, res) {
 
   console.log("[LOG] /search {get} started");
 
@@ -62,7 +66,7 @@ app.get('/search', function (req, res) {
   res.json(search_json);
   // for testing
   console.log("[LOG] user_search: " + user_search);
-});
+}); */
 
 
 app.get('/trending.html', function (req, res) {
@@ -76,7 +80,7 @@ app.get('/home.html', function (req, res) {
 });
 
 // search logic to receive search results from front-end
-app.post('/search', (req, res) => {
+app.get('/search', (req, res) => {
 
   console.log("[LOG] /search {post} started");
 
@@ -184,8 +188,7 @@ app.get('/graphFinanceAPIcall', function (req, res) {
       // Each element of the array is an object representing one security.
       // Symbol can be gotten via securities[INDEX].symbol.
       // Security Name can be gotten via securities[INDEX].securityName.
-      if(securities)
-      {
+      if (securities) {
         user_search_stock_ticker = securities[0].symbol;
       }
     });
