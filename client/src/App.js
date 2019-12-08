@@ -130,27 +130,6 @@ class financeGraphInfo extends React.Component {
   render(){
     const { error, isLoaded, items } = this.state;
     var data = String(this.state.items)
-<<<<<<< HEAD
-    console.log(data)
-    var correctedData = data.replace(/{/g,'').replace(/}/g,'').replace(/"Global Quote":/g,'').replace(/"01. symbol":/g,'').replace(/"02. open":/g,'').replace(/"03. high":/g,'')
-    .replace(/"04. low":/g,'').replace(/"05. price":/g,'').replace(/"06. volume":/g,'').replace(/"07. latest trading day":/g,'').replace(/"08. previous close":/g,'')
-    .replace(/"09. change":/g,'').replace(/"10. change percent":/g,'').replace(/"/g,'')
-    var correctedDataArray = correctedData.split(",")
-
-    const element = 
-      React.createElement('p',{},"Ticker: " + String(correctedDataArray[0]),
-      React.createElement('p',{},"Open: " + String(correctedDataArray[1]),
-      React.createElement('p',{},"High: " + String(correctedDataArray[2]),
-      React.createElement('p',{},"Low: " + String(correctedDataArray[3]),
-      React.createElement('p',{},"Price: " + String(correctedDataArray[4]),
-      React.createElement('p',{},"Volume: " + String(correctedDataArray[5]),
-      React.createElement('p',{},"Disclamer: " + String(correctedDataArray[6]),
-      React.createElement('p',{},"Previous Close: " + String(correctedDataArray[7]),
-      React.createElement('p',{},"Change: " + String(correctedDataArray[8]),
-      React.createElement('p',{},"Change Percent: " + String(correctedDataArray[9])
-    ))))))))))
-    return element
-=======
 
     console.log(data)
     var symbol = data.replace(/"/g,'').replace(/{/g,'').replace(/}/g,'').replace("Meta Data:",'').replace("1. Information: Daily Prices (open, high, low, close) and Volumes,",'').replace("2. Symbol: ",'').replace(/\s/g, '');
@@ -209,9 +188,8 @@ class financeGraphInfo extends React.Component {
       }
     });
 
-
+    //
     return ''
->>>>>>> a82ae05b19d2124c2eeee172fd3d089dde9dc9f9
   }
 }
 class twitterInfo extends React.Component {
