@@ -24,6 +24,7 @@ var client = new Twitter({
 var Sentiment = require('sentiment');
 var sentiment = new Sentiment();
 
+var ReactDOM = require('react-dom')
 
 var app = express();
 
@@ -116,8 +117,8 @@ app.post('/search', (req, res) => {
         user_search_stock_ticker = String(jsonReponse2.bestMatches[0]['1. symbol']);
       }
       else{
-        company_name = "DJIA";
-        user_search_stock_ticker = "Dow Jones Industrial Average";
+        company_name = "Dow Jones Industrial Average";
+        user_search_stock_ticker = "DJIA";
       }
     }
     request2.send();
