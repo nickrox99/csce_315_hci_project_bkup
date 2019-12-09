@@ -158,6 +158,10 @@ app.get('/twitterAPIcall', function (req, res) {
 app.get('/financeAPIcall', function (req, res) {
   console.log("[LOG] /financeAPIcall started");
 
+
+  // NICK'S ALPHAVANTAGE API KEY: CQAKNU60Z9IF3RJ9
+  // DONALDS'S ALPHAVANTAGE API KEY: 0SE9COWFX0MGZGAE
+  // RYAN's ALPHAVANTAGE API KEY: 
   var symbol = user_search;
 
   if(symbol.length > 4)
