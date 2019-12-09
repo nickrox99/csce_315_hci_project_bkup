@@ -112,7 +112,7 @@ app.post('/search', (req, res) => {
 
       var matchScore = parseFloat(jsonReponse2.bestMatches[0]['9. matchScore'])
 
-      if (matchScore > .95){
+      if (matchScore > .87){
         company_name = String(jsonReponse2.bestMatches[0]['2. name']);
         user_search_stock_ticker = String(jsonReponse2.bestMatches[0]['1. symbol']);
       }
