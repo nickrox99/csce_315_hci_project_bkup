@@ -48,6 +48,16 @@ input#bar{
     top: -62px;
     right: -45px;
 }
+.description{
+    color: white;
+}
+.center {
+    position: relative;
+    left: 37%;
+    top: 60px;
+    /* border:1px solid #333; */
+    opacity: .8;
+  }
 
 /* div search bar class */
 .div-search-bar{
@@ -135,18 +145,12 @@ input#bar{
     text-decoration: none;
     font-size: 17px;
     text-align: center;
+    position: relative;
+    top: 40px;
 
 
 }
 
-img{
-  opacity: 0.75;
-   /* For IE8 and earlier */
-  background-blend-mode: screen
-  
-  width: 500px;
-  
-}
 
 .form-sub{
     

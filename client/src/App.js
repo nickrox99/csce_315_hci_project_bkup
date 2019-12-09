@@ -94,7 +94,8 @@ class financeInfo extends React.Component {
     const change = React.createElement('p',{},"Change: $" + String(correctedDataArray[8]))
     const changePercent = React.createElement('p',{},"Change Percent: " + String(correctedDataArray[9])) 
     const container = React.createElement('div',{},[price,disclamer,open,high,low,prev,volume,change,changePercent])
-
+    const container2 = React.createElement('div',{},[ticker])
+    
     return container
   }
 }
