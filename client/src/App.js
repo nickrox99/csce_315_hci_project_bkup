@@ -83,7 +83,7 @@ class financeInfo extends React.Component {
     .replace(/"09. change":/g,'').replace(/"10. change percent":/g,'').replace(/"/g,'')
     var correctedDataArray = correctedData.split(",")
 
-    const ticker = React.createElement('p',{},"Ticker: " + String(correctedDataArray[0]))
+    const ticker = React.createElement('p',{},"Ticker Symbol: " + String(correctedDataArray[0]))
     const open = React.createElement('p',{},"Open: $" + String(correctedDataArray[1]))
     const high = React.createElement('p',{},"High: $" + String(correctedDataArray[2]))
     const low = React.createElement('p',{},"Low: $" + String(correctedDataArray[3]))
@@ -93,9 +93,8 @@ class financeInfo extends React.Component {
     const prev = React.createElement('p',{},"Previous Close: $" + String(correctedDataArray[7]))
     const change = React.createElement('p',{},"Change: $" + String(correctedDataArray[8]))
     const changePercent = React.createElement('p',{},"Change Percent: " + String(correctedDataArray[9])) 
-    const container = React.createElement('div',{},[price,disclamer,open,high,low,prev,volume,change,changePercent])
-    const container2 = React.createElement('div',{},[ticker])
-    
+    const container = React.createElement('div',{},[ticker,price,disclamer,open,high,low,prev,volume,change,changePercent])
+
     return container
   }
 }
@@ -222,15 +221,24 @@ class twitterInfo extends React.Component {
   }
   render(){
     const { error, isLoaded, items } = this.state;
-    const element = 
-      React.createElement('p',{},String(this.state.items[0]),
-      React.createElement('p',{},String(this.state.items[1]),
-      React.createElement('p',{},String(this.state.items[2]),
-      React.createElement('p',{},String(this.state.items[3]),
-      React.createElement('p',{},String(this.state.items[4])
-    )))))
-    // TODO look into styling the element to make it look better
-    return element
+
+    const tweet1 = React.createElement('p',{},String(this.state.items[0]))
+    const tweet2 = React.createElement('p',{},String(this.state.items[1]))
+    const tweet3 = React.createElement('p',{},String(this.state.items[2]))
+    const tweet4 = React.createElement('p',{},String(this.state.items[3]))
+    const tweet5 = React.createElement('p',{},String(this.state.items[4]))
+
+    // const tweet6 = React.createElement('p',{},String(this.state.items[5]))
+    // const tweet7 = React.createElement('p',{},String(this.state.items[6]))
+    // const tweet8 = React.createElement('p',{},String(this.state.items[7]))
+    // const tweet9 = React.createElement('p',{},String(this.state.items[8]))
+    // const tweet10 = React.createElement('p',{},String(this.state.items[9]))
+    // const container = React.createElement('div',{},[tweet1,tweet2,tweet3,tweet4,tweet5,tweet6,tweet7,tweet8,tweet9,tweet10])
+
+    const container = React.createElement('div',{},[tweet1,tweet2,tweet3,tweet4,tweet5])
+
+
+    return container
   }
 }
 

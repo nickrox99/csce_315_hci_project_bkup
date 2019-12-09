@@ -41,47 +41,48 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 let user_search = "default";
-let user_search_stock_ticker = "DJIA";
+let user_search_stock_ticker = "";
+let company_name = "";
 
 app.get('/', function (req, res) {
-  console.log("[LOG] redirecting to home page");
+  //console.log("[LOG] redirecting to home page");
   res.redirect('/home');
 });
 
 app.get('/home', function (req, res) {
 
-  console.log("[LOG] /home started");
+  //console.log("[LOG] /home started");
 
   res.sendFile(path.join(__dirname + "/views/home.html"));
 });
 
 app.get('/search', function (req, res) {
 
-  console.log("[LOG] /search {get} started");
+  //console.log("[LOG] /search {get} started");
 
   var search_json = {
     search: "'" + user_search + "'"
   }
   res.json(search_json);
   // for testing
-  console.log("[LOG] user_search: " + user_search);
+  //console.log("[LOG] user_search: " + user_search);
 });
 
 
 app.get('/trending.html', function (req, res) {
-  console.log("[LOG] redirecting to trending page");
+  //console.log("[LOG] redirecting to trending page");
   res.redirect('/trending');
 });
 
 app.get('/home.html', function (req, res) {
-  console.log("[LOG] redirecting to home page");
+  //console.log("[LOG] redirecting to home page");
   res.redirect('/home');
 });
 
 // search logic to receive search results from front-end
 app.post('/search', (req, res) => {
 
-  console.log("[LOG] /search {post} started");
+  //console.log("[LOG] /search {post} started");
 
   if (typeof req.body.bar === 'undefined') {
     console.log("[LOG] ERROR: /search {post} -> missing paramter bar");
@@ -91,20 +92,70 @@ app.post('/search', (req, res) => {
   let bar = req.body.bar;
   user_search = bar;
 
+  if(user_search.length > 4)
+  {
+    var jsonReponse2;
+    var request2 = new XMLHttpRequest();
+    var url2 = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=' + user_search + '&apikey=CQAKNU60Z9IF3RJ9&format=json&callback=?&origin=*';
+    request2.responseType = 'json';
+    request2.open('GET', url2, true);
+    request2.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    request2.onload = function () {
+      jsonReponse2 = request2.responseText;
+      jsonReponse2 = JSON.parse(jsonReponse2);
+      console.log(jsonReponse2);
+
+      //console.log(jsonReponse2.bestMatches[0]['1. symbol']);
+      //console.log(jsonReponse2.bestMatches[0]['2. name']);
+
+      var matchScore = parseFloat(jsonReponse2.bestMatches[0]['9. matchScore'])
+
+      if (matchScore > .95){
+        company_name = String(jsonReponse2.bestMatches[0]['2. name']);
+        user_search_stock_ticker = String(jsonReponse2.bestMatches[0]['1. symbol']);
+      }
+      else{
+        company_name = "DJIA";
+      user_search_stock_ticker = "Dow Jones Industrial Average";
+      }
+    }
+    request2.send();
+  }
+  else{
+    var jsonReponse2;
+    var request2 = new XMLHttpRequest();
+    var url2 = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=' + user_search + '&apikey=CQAKNU60Z9IF3RJ9&format=json&callback=?&origin=*';
+    request2.responseType = 'json';
+    request2.open('GET', url2, true);
+    request2.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    request2.onload = function () {
+      jsonReponse2 = request2.responseText;
+      jsonReponse2 = JSON.parse(jsonReponse2);
+      console.log(jsonReponse2);
+
+      //console.log(jsonReponse2.bestMatches[0]['1. symbol']);
+      //console.log(jsonReponse2.bestMatches[0]['2. name']);
+
+      company_name = String(jsonReponse2.bestMatches[0]['2. name']);
+      user_search_stock_ticker = String(jsonReponse2.bestMatches[0]['1. symbol']);
+    }
+    request2.send();
+  }
+
   //res.status(200).json({error: null, data: bar});
   res.redirect('/trending');
 });
 
 app.get('/trending', function (req, res) {
 
-  console.log("[LOG] /trending started");
+  //console.log("[LOG] /trending started");
 
   res.sendFile(path.join(__dirname + "/views/trending.html"));
 });
 
 app.get('/wikiAPIcall', function (req, res) {
 
-  console.log("[LOG] /wikiAPIcall started");
+  //console.log("[LOG] /wikiAPIcall started");
 
   // wikipedia search
 
@@ -116,7 +167,7 @@ app.get('/wikiAPIcall', function (req, res) {
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   request.onload = function () {
     jsonReponse = request.responseText;
-    console.log(jsonReponse);
+    //console.log(jsonReponse);
     res.json(jsonReponse);
 
   }
@@ -126,7 +177,7 @@ app.get('/wikiAPIcall', function (req, res) {
 let global_array_tweets = new Array();
 app.get('/twitterAPIcall', function (req, res) {
 
-  console.log("[LOG] /twitterAPIcall started");
+  //console.log("[LOG] /twitterAPIcall started");
 
   // twitter search
   client.get('search/tweets', { q: "'" + user_search + "'", lang: "en", result_type: "popular", count: "30" }, function (error, data) {
@@ -134,7 +185,7 @@ app.get('/twitterAPIcall', function (req, res) {
     if (error) {
       // error message thrown to console
       //res.send("Error loading tweets, please try again!");
-      console.log("[LOG] ERROR:  " + error);
+      //console.log("[LOG] ERROR:  " + error);
     }
     if (!error) {
       var tweets = data.statuses;
@@ -144,7 +195,7 @@ app.get('/twitterAPIcall', function (req, res) {
         array_tweets.push(tweets[i].text);
         global_array_tweets.push(tweets[i].text);
         // print out the first tweet
-        console.log(tweets[i].text);
+        //console.log(tweets[i].text);
 
       }
       res.send(array_tweets);
@@ -155,28 +206,23 @@ app.get('/twitterAPIcall', function (req, res) {
 
 
 app.get('/financeAPIcall', function (req, res) {
-  console.log("[LOG] /financeAPIcall started");
+  //console.log("[LOG] /financeAPIcall started");
 
 
   // NICK'S ALPHAVANTAGE API KEY: CQAKNU60Z9IF3RJ9
   // DONALDS'S ALPHAVANTAGE API KEY: 0SE9COWFX0MGZGAE
   // RYAN's ALPHAVANTAGE API KEY: 
-  var symbol = user_search;
 
-  if(symbol.length > 4)
-  {
-    symbol = "DJIA";
-  }
-  console.log("[LOG] financeAPIcall -> " + symbol);
+  //console.log("[LOG] financeAPIcall -> " + symbol);
   var jsonReponse;
   var request = new XMLHttpRequest();
-  var url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=' + symbol + '&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
+  var url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=' + user_search_stock_ticker + '&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
   request.responseType = 'json';
   request.open('GET', url, true);
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   request.onload = function () {
     jsonReponse = request.responseText;
-    console.log(jsonReponse);
+    //console.log(jsonReponse);
     res.json(jsonReponse);
 
   }
@@ -185,20 +231,15 @@ app.get('/financeAPIcall', function (req, res) {
 });
 
 app.get('/graphFinanceAPIcall', function (req, res) {
-  console.log("[LOG] /graphFinanceAPIcall started");
+  //console.log("[LOG] /graphFinanceAPIcall started");
 
 
-  console.log("[LOG] /graphFinanceAPIcall started");
+  //console.log("[LOG] /graphFinanceAPIcall started");
   // searches by both symbol and security
 
-  var symbol = user_search;
-  if(symbol.length > 4)
-  {
-    symbol = "DJIA";
-  }
   var jsonReponse;
   var request = new XMLHttpRequest();
-  var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + symbol + '&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
+  var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + user_search_stock_ticker + '&apikey=KVZEQ9M5DWDHJN4C&format=json&callback=?&origin=*';
   request.responseType = 'json';
   request.open('GET', url, true);
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
@@ -212,7 +253,7 @@ app.get('/graphFinanceAPIcall', function (req, res) {
 
 
 app.get('/facebookAPIcall', function (req, res) {
-  console.log("[LOG] /facebookAPIcall started");
+  //console.log("[LOG] /facebookAPIcall started");
 
   // FACEBOOK REQUIRES PAYMENT FOR SEARCHING PUBLIC POSTS
 
@@ -220,14 +261,14 @@ app.get('/facebookAPIcall', function (req, res) {
 });
 
 app.get('/sentimentAPIcall', function (req, res) {
-  console.log("[LOG] /sentimentAPIcall started")
+  //console.log("[LOG] /sentimentAPIcall started")
 
   var tweet_aggregate = "";
   for (var i = 0; i < global_array_tweets.length; i++) {
     tweet_aggregate += (global_array_tweets[i] + " ");
   }
   var result = sentiment.analyze(tweet_aggregate);
-  console.log(result['score']);
+  //console.log(result['score']);
   res.json(result['score']);
 });
 
@@ -241,7 +282,7 @@ const host = '0.0.0.0';
 const port = process.env.PORT || 3000;
 
 app.listen(port, host, function () {
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  //console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
 
