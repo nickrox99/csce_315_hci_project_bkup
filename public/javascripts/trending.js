@@ -27,4 +27,7 @@ window.onload = (function () {
     const financeGraphInfoLocation = document.querySelector('#financeGraph');
     ReactDOM.render(e(financeGraphInfo),financeGraphInfoLocation);
 
+    //ReactDOM.render(company_name,document.querySelector('#Company Name'));
+
+
 });

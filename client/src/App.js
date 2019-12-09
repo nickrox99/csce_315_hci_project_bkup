@@ -83,17 +83,17 @@ class financeInfo extends React.Component {
     .replace(/"09. change":/g,'').replace(/"10. change percent":/g,'').replace(/"/g,'')
     var correctedDataArray = correctedData.split(",")
 
-    const ticker = React.createElement('p',{},"Ticker Symbol: " + String(correctedDataArray[0]))
-    const open = React.createElement('p',{},"Open: $" + String(correctedDataArray[1]))
-    const high = React.createElement('p',{},"High: $" + String(correctedDataArray[2]))
-    const low = React.createElement('p',{},"Low: $" + String(correctedDataArray[3]))
-    const price = React.createElement('p',{},"Price: $" + String(correctedDataArray[4]))
-    const volume = React.createElement('p',{},"Volume: " + String(correctedDataArray[5]))
-    const disclamer = React.createElement('p',{},"Disclamer: " + String(correctedDataArray[6]))
-    const prev = React.createElement('p',{},"Previous Close: $" + String(correctedDataArray[7]))
-    const change = React.createElement('p',{},"Change: $" + String(correctedDataArray[8]))
-    const changePercent = React.createElement('p',{},"Change Percent: " + String(correctedDataArray[9])) 
-    const container = React.createElement('div',{},[ticker,price,disclamer,open,high,low,prev,volume,change,changePercent])
+    const ticker = React.createElement('p',{},"Ticker Symbol: " + String(correctedDataArray[0]));
+    const open = React.createElement('p',{},"Open: $" + String(correctedDataArray[1]));
+    const high = React.createElement('p',{},"High: $" + String(correctedDataArray[2]));
+    const low = React.createElement('p',{},"Low: $" + String(correctedDataArray[3]));
+    const price = React.createElement('p',{},"Price: $" + String(correctedDataArray[4]));
+    const volume = React.createElement('p',{},"Volume: " + String(correctedDataArray[5]));
+    const disclamer = React.createElement('p',{},"Disclamer: " + String(correctedDataArray[6]));
+    const prev = React.createElement('p',{},"Previous Close: $" + String(correctedDataArray[7]));
+    const change = React.createElement('p',{},"Change: $" + String(correctedDataArray[8]));
+    const changePercent = React.createElement('p',{},"Change Percent: " + String(correctedDataArray[9]));
+    const container = React.createElement('div',{},[ticker,price,disclamer,open,high,low,prev,volume,change,changePercent]);
 
     return container
   }
@@ -188,7 +188,6 @@ class financeGraphInfo extends React.Component {
       }
     });
 
-    //
     return ''
   }
 }

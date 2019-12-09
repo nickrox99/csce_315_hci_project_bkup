@@ -42,8 +42,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 let user_search = "default";
-let user_search_stock_ticker = "";
-let company_name = "";
+var user_search_stock_ticker = "";
+var company_name = "";
 
 app.get('/', function (req, res) {
   //console.log("[LOG] redirecting to home page");
@@ -116,8 +116,8 @@ app.post('/search', (req, res) => {
         user_search_stock_ticker = String(jsonReponse2.bestMatches[0]['1. symbol']);
       }
       else{
-        company_name = "DJIA";
-      user_search_stock_ticker = "Dow Jones Industrial Average";
+        company_name = "Dow Jones Industrial Average";
+        user_search_stock_ticker = "DJIA";
       }
     }
     request2.send();
