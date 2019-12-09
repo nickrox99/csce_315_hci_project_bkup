@@ -41,9 +41,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-let user_search = "Dow Jones Industrial Average";
-let user_search_stock_ticker = "DJIA";
-let company_name = "Dow Jones Industrial Average";
+var user_search = "Dow Jones Industrial Average";
+var user_search_stock_ticker = "DJIA";
+var company_name = "Dow Jones Industrial Average";
 
 app.get('/', function (req, res) {
   //console.log("[LOG] redirecting to home page");
