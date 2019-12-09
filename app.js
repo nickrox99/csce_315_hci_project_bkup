@@ -123,8 +123,24 @@ app.post('/search', (req, res) => {
     request2.send();
   }
   else{
-    user_search_stock_ticker = user_search;
-    company_name = "Dow Jones Industrial Average";
+    var jsonReponse2;
+    var request2 = new XMLHttpRequest();
+    var url2 = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=' + user_search + '&apikey=CQAKNU60Z9IF3RJ9&format=json&callback=?&origin=*';
+    request2.responseType = 'json';
+    request2.open('GET', url2, true);
+    request2.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    request2.onload = function () {
+      jsonReponse2 = request2.responseText;
+      jsonReponse2 = JSON.parse(jsonReponse2);
+      console.log(jsonReponse2);
+
+      //console.log(jsonReponse2.bestMatches[0]['1. symbol']);
+      //console.log(jsonReponse2.bestMatches[0]['2. name']);
+
+      company_name = String(jsonReponse2.bestMatches[0]['2. name']);
+      user_search_stock_ticker = String(jsonReponse2.bestMatches[0]['1. symbol']);
+    }
+    request2.send();
   }
 
   //res.status(200).json({error: null, data: bar});
@@ -224,7 +240,7 @@ app.get('/graphFinanceAPIcall', function (req, res) {
 
   var jsonReponse;
   var request = new XMLHttpRequest();
-  var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + user_search_stock_ticker + '&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
+  var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + user_search_stock_ticker + '&apikey=KVZEQ9M5DWDHJN4C&format=json&callback=?&origin=*';
   request.responseType = 'json';
   request.open('GET', url, true);
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
