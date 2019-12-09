@@ -24,7 +24,6 @@ var client = new Twitter({
 var Sentiment = require('sentiment');
 var sentiment = new Sentiment();
 
-var ReactDOM = require('react-dom')
 
 var app = express();
 
