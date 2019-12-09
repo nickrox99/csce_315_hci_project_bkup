@@ -130,7 +130,7 @@ app.get('/twitterAPIcall', function (req, res) {
   console.log("[LOG] /twitterAPIcall started");
 
   // twitter search
-  client.get('search/tweets', { q: "'" + user_search + "'", lang: "en", result_type: "popular" }, function (error, data) {
+  client.get('search/tweets', { q: "'" + user_search + "'", lang: "en", result_type: "popular", count: "30" }, function (error, data) {
     // TODO: fix results, currently only getting 'null'
     if (error) {
       // error message thrown to console

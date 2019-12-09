@@ -132,6 +132,8 @@
 
     }
 
+    
+
     .h1-facebook-title {
         text-align: center;
         border: 1px solid black;
@@ -191,7 +193,10 @@
         width: 40%;
         border: 1px solid black;
         position: relative;
+        font-size: 72;
+        height: auto;
         
+
     }
 
     .div-additional-API {

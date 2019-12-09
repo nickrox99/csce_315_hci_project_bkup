@@ -263,7 +263,36 @@ class sentimentInfo extends React.Component {
   }
   // TODO add a color coding scale
   render(){
+
+    console.log("Sentiment Score color coding");
+
     const { error, isLoaded, items } = this.state;
-    return String(this.state.items)
+    var element = null;
+    var result = parseFloat(this.state.items);
+    console.log(result);
+    if(result > 5)
+    {
+     
+      console.log("Sentiment Score -> green");
+      element = React.createElement('p',{style:{color:"green", fontSize: 144, size: "auto", textAlign: "center"}},String(result));
+    }
+
+    else if(result >= 0 && result <= 5)
+    {
+      console.log("Sentiment Score -> yellow");
+      element = React.createElement('p',{style:{color:"yellow", fontSize: 144, size: "auto", textAlign: "center"}},String(result));
+    }
+    else if(result <= 0 && result > -5)
+    {
+      console.log("Sentiment Score -> orange");
+      element = React.createElement('p',{style:{color:"orange",  fontSize: 144, size: "auto", textAlign: "center"}},String(result));
+    }
+    else if(result < -5)
+    {
+      console.log("Sentiment Score -> red");
+      element = React.createElement('p',{style:{color:"red",  fontSize: 144, size: "auto", textAlign: "center"}},String(result));
+    }
+    const value = element;
+    return value;
   }
 }
