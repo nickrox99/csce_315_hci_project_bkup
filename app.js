@@ -40,9 +40,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-let user_search = "default";
-let user_search_stock_ticker = "";
-let company_name = "";
+let user_search = "Dow Jones Industrial Average";
+let user_search_stock_ticker = "DJIA";
+let company_name = "Dow Jones Industrial Average";
 
 app.get('/', function (req, res) {
   //console.log("[LOG] redirecting to home page");
@@ -101,6 +101,7 @@ app.post('/search', (req, res) => {
     request2.open('GET', url2, true);
     request2.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     request2.onload = function () {
+
       jsonReponse2 = request2.responseText;
       jsonReponse2 = JSON.parse(jsonReponse2);
       console.log(jsonReponse2);
@@ -116,7 +117,7 @@ app.post('/search', (req, res) => {
       }
       else{
         company_name = "DJIA";
-      user_search_stock_ticker = "Dow Jones Industrial Average";
+        user_search_stock_ticker = "Dow Jones Industrial Average";
       }
     }
     request2.send();
