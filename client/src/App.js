@@ -142,14 +142,19 @@ class financeGraphInfo extends React.Component {
     .replace(/     3. low:/g,"").replace(/     5. volume:/g,"").replace(/:/g,',').replace(/    /g,'').replace(/         /g,'').replace(',','').replace('3. Last Refreshed 2019-12-06','').replace(',','')
     .replace(',','').replace(/\s/g, '').substring(14);
 
-    console.log(correctedData)
-    var dataArray = correctedData.split(',')
+    if (symbol != 'DJIA'){
+      correctedData = correctedData.substring(8);
+      console.log(correctedData);
+    }
+    
+    console.log(correctedData);
+    var dataArray = correctedData.split(',');
     //console.log(dataArray)
 
-    var dateArray = []
-    var priceArray = []
-    var dateStartCounter = 0
-    var priceStartCounter = 4
+    var dateArray = [];
+    var priceArray = [];
+    var dateStartCounter = 0;
+    var priceStartCounter = 4;
   
     for (var i = 0; i < 100; i++){
       dateArray.push(dataArray[dateStartCounter])
