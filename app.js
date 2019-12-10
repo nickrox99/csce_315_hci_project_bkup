@@ -7,7 +7,6 @@ var logger = require('morgan');
 // REST API driver
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 // Stock - Security Converter
-var StockSymbolLookup = require('stock-symbol-lookup');
 
 
 // TWITTER
@@ -24,7 +23,6 @@ var client = new Twitter({
 var Sentiment = require('sentiment');
 var sentiment = new Sentiment();
 
-var ReactDOM = require('react-dom')
 
 var app = express();
 
