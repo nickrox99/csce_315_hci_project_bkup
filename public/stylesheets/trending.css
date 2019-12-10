@@ -197,6 +197,7 @@
         height: auto;
         position: relative;
         top: -40px;
+        border-radius: 25px;
     }
 
     .div-additional-API {
@@ -206,6 +207,7 @@
         position: relative;
         top: 0px;
         height: auto;
+        border-radius: 25px;
     }
 
     .h3-sentiment-API {
