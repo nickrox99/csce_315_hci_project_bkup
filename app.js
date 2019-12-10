@@ -80,6 +80,78 @@ app.get('/home.html', function (req, res) {
 });
 
 // search logic to receive search results from front-end
+app.post('/search', (req, res) => {
+
+  //console.log("[LOG] /search {post} started");
+
+  if (typeof req.body.bar === 'undefined') {
+    console.log("[LOG] ERROR: /search {post} -> missing paramter bar");
+    res.status(400).json({ error: 'missing paramter bar', data: null });
+    return;
+  }
+  let bar = req.body.bar;
+  user_search = bar;
+
+  if(user_search.length > 4)
+  {
+    var jsonReponse2;
+    var request2 = new XMLHttpRequest();
+    var url2 = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=' + user_search + '&apikey=CQAKNU60Z9IF3RJ9&format=json&callback=?&origin=*';
+    request2.responseType = 'json';
+    request2.open('GET', url2, true);
+    request2.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    request2.onload = function () {
+
+      jsonReponse2 = request2.responseText;
+      jsonReponse2 = JSON.parse(jsonReponse2);
+      console.log(jsonReponse2);
+
+      //console.log(jsonReponse2.bestMatches[0]['1. symbol']);
+      //console.log(jsonReponse2.bestMatches[0]['2. name']);
+      var test = jsonReponse2;
+      if (!test[0]){
+        company_name = "Dow Jones Industrial Average";
+        user_search_stock_ticker = "DJIA";
+      }
+      else{
+        var matchScore = parseFloat(jsonReponse2.bestMatches[0]['9. matchScore'])
+
+        if (matchScore > .50){
+          company_name = String(jsonReponse2.bestMatches[0]['2. name']);
+          user_search_stock_ticker = String(jsonReponse2.bestMatches[0]['1. symbol']);
+        }
+        else{
+          company_name = "Dow Jones Industrial Average";
+          user_search_stock_ticker = "DJIA";
+        }
+      }
+    }
+    request2.send();
+  }
+  else{
+    var jsonReponse2;
+    var request2 = new XMLHttpRequest();
+    var url2 = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=' + user_search + '&apikey=CQAKNU60Z9IF3RJ9&format=json&callback=?&origin=*';
+    request2.responseType = 'json';
+    request2.open('GET', url2, true);
+    request2.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    request2.onload = function () {
+      jsonReponse2 = request2.responseText;
+      jsonReponse2 = JSON.parse(jsonReponse2);
+      console.log(jsonReponse2);
+
+      //console.log(jsonReponse2.bestMatches[0]['1. symbol']);
+      //console.log(jsonReponse2.bestMatches[0]['2. name']);
+
+      company_name = String(jsonReponse2.bestMatches[0]['2. name']);
+      user_search_stock_ticker = String(jsonReponse2.bestMatches[0]['1. symbol']);
+    }
+    request2.send();
+  }
+
+  //res.status(200).json({error: null, data: bar});
+  res.redirect('/trending');
+});
 
 app.get('/trending', function (req, res) {
 
@@ -138,91 +210,6 @@ app.get('/twitterAPIcall', function (req, res) {
   });
 
 });
-
-function resolveAfter2Seconds() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      app.post('/search', (req, res) => {
-
-        //console.log("[LOG] /search {post} started");
-      
-        if (typeof req.body.bar === 'undefined') {
-          console.log("[LOG] ERROR: /search {post} -> missing paramter bar");
-          res.status(400).json({ error: 'missing paramter bar', data: null });
-          return;
-        }
-        let bar = req.body.bar;
-        user_search = bar;
-      
-        if(user_search.length > 4)
-        {
-          var jsonReponse2;
-          var request2 = new XMLHttpRequest();
-          var url2 = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=' + user_search + '&apikey=CQAKNU60Z9IF3RJ9&format=json&callback=?&origin=*';
-          request2.responseType = 'json';
-          request2.open('GET', url2, true);
-          request2.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-          request2.onload = function () {
-      
-            jsonReponse2 = request2.responseText;
-            jsonReponse2 = JSON.parse(jsonReponse2);
-            console.log(jsonReponse2);
-      
-            //console.log(jsonReponse2.bestMatches[0]['1. symbol']);
-            //console.log(jsonReponse2.bestMatches[0]['2. name']);
-            var test = jsonReponse2;
-            if (!test[0]){
-              company_name = "Dow Jones Industrial Average";
-              user_search_stock_ticker = "DJIA";
-            }
-            else{
-              var matchScore = parseFloat(jsonReponse2.bestMatches[0]['9. matchScore'])
-      
-              if (matchScore > .50){
-                company_name = String(jsonReponse2.bestMatches[0]['2. name']);
-                user_search_stock_ticker = String(jsonReponse2.bestMatches[0]['1. symbol']);
-              }
-              else{
-                company_name = "Dow Jones Industrial Average";
-                user_search_stock_ticker = "DJIA";
-              }
-            }
-          }
-          request2.send();
-        }
-        else{
-          var jsonReponse2;
-          var request2 = new XMLHttpRequest();
-          var url2 = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=' + user_search + '&apikey=CQAKNU60Z9IF3RJ9&format=json&callback=?&origin=*';
-          request2.responseType = 'json';
-          request2.open('GET', url2, true);
-          request2.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-          request2.onload = function () {
-            jsonReponse2 = request2.responseText;
-            jsonReponse2 = JSON.parse(jsonReponse2);
-            console.log(jsonReponse2);
-      
-            //console.log(jsonReponse2.bestMatches[0]['1. symbol']);
-            //console.log(jsonReponse2.bestMatches[0]['2. name']);
-      
-            company_name = String(jsonReponse2.bestMatches[0]['2. name']);
-            user_search_stock_ticker = String(jsonReponse2.bestMatches[0]['1. symbol']);
-          }
-          request2.send();
-        }
-      
-        //res.status(200).json({error: null, data: bar});
-        res.redirect('/trending');
-      });
-      resolve('resolved');
-    }, 2000);
-  });
-}
-
-async function asyncCall() {
-  console.log('calling');
-  var result = await resolveAfter2Seconds();
-  console.log(result);
   
 app.get('/financeAPIcall', function (req, res) {
   //console.log("[LOG] /financeAPIcall started");
@@ -270,11 +257,6 @@ app.get('/graphFinanceAPIcall', function (req, res) {
   request.send();
 
 });
-}
-
-asyncCall();
-
-
 
 app.get('/facebookAPIcall', function (req, res) {
   //console.log("[LOG] /facebookAPIcall started");

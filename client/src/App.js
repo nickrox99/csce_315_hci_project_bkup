@@ -144,10 +144,10 @@ class financeGraphInfo extends React.Component {
 
     if (symbol != 'DJIA'){
       correctedData = correctedData.substring(8);
-      console.log(correctedData);
+      //console.log(correctedData);
     }
-    
-    console.log(correctedData);
+
+    //console.log(correctedData);
     var dataArray = correctedData.split(',');
     //console.log(dataArray)
 
