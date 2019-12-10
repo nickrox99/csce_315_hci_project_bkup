@@ -220,7 +220,7 @@ app.get('/financeAPIcall', function (req, res) {
   var request = new XMLHttpRequest();
   var url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=' + user_search_stock_ticker + '&apikey=0SE9COWFX0MGZGAE&format=json&callback=?&origin=*';
   request.responseType = 'json';
-  request.open('GET', url, true);
+  request.open('GET', url, false);
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   request.onload = function () {
     jsonReponse = request.responseText;
@@ -229,6 +229,7 @@ app.get('/financeAPIcall', function (req, res) {
 
   }
   request.send();
+
 
 });
 
@@ -243,7 +244,7 @@ app.get('/graphFinanceAPIcall', function (req, res) {
   var request = new XMLHttpRequest();
   var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + user_search_stock_ticker + '&apikey=KVZEQ9M5DWDHJN4C&format=json&callback=?&origin=*';
   request.responseType = 'json';
-  request.open('GET', url, true);
+  request.open('GET', url, false);
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   request.onload = function () {
     jsonReponse = request.responseText;
