@@ -109,16 +109,22 @@ app.post('/search', (req, res) => {
 
       //console.log(jsonReponse2.bestMatches[0]['1. symbol']);
       //console.log(jsonReponse2.bestMatches[0]['2. name']);
-
-      var matchScore = parseFloat(jsonReponse2.bestMatches[0]['9. matchScore'])
-
-      if (matchScore > .87){
-        company_name = String(jsonReponse2.bestMatches[0]['2. name']);
-        user_search_stock_ticker = String(jsonReponse2.bestMatches[0]['1. symbol']);
-      }
-      else{
+      var test = String(jsonReponse2);
+      if (test === ''){
         company_name = "Dow Jones Industrial Average";
         user_search_stock_ticker = "DJIA";
+      }
+      else{
+        var matchScore = parseFloat(jsonReponse2.bestMatches[0]['9. matchScore'])
+
+        if (matchScore > .50){
+          company_name = String(jsonReponse2.bestMatches[0]['2. name']);
+          user_search_stock_ticker = String(jsonReponse2.bestMatches[0]['1. symbol']);
+        }
+        else{
+          company_name = "Dow Jones Industrial Average";
+          user_search_stock_ticker = "DJIA";
+        }
       }
     }
     request2.send();
