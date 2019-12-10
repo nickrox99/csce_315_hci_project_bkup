@@ -109,8 +109,8 @@ app.post('/search', (req, res) => {
 
       //console.log(jsonReponse2.bestMatches[0]['1. symbol']);
       //console.log(jsonReponse2.bestMatches[0]['2. name']);
-      var test = String(jsonReponse2);
-      if (test === ''){
+      var test = jsonReponse2;
+      if (!test[0]){
         company_name = "Dow Jones Industrial Average";
         user_search_stock_ticker = "DJIA";
       }
