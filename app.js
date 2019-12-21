@@ -8,6 +8,7 @@ var logger = require('morgan');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 // Stock - Security Converter
 
+var async = require('async');
 
 // TWITTER
 var Twitter = require('twit');
@@ -107,15 +108,15 @@ app.post('/search', (req, res) => {
 
       //console.log(jsonReponse2.bestMatches[0]['1. symbol']);
       //console.log(jsonReponse2.bestMatches[0]['2. name']);
-      var test = jsonReponse2;
-      if (!test[0]){
+      var test = String(jsonReponse2.bestMatches);
+      if (test == ""){
         company_name = "Dow Jones Industrial Average";
         user_search_stock_ticker = "DJIA";
       }
       else{
-        var matchScore = parseFloat(jsonReponse2.bestMatches[0]['9. matchScore'])
-
-        if (matchScore > .50){
+        var matchScore = parseFloat(jsonReponse2.bestMatches[0]['9. matchScore']);
+        console.log( matchScore);
+        if (matchScore >= .50){
           company_name = String(jsonReponse2.bestMatches[0]['2. name']);
           user_search_stock_ticker = String(jsonReponse2.bestMatches[0]['1. symbol']);
         }
@@ -209,8 +210,7 @@ app.get('/twitterAPIcall', function (req, res) {
   });
 
 });
-
-
+  
 app.get('/financeAPIcall', function (req, res) {
   //console.log("[LOG] /financeAPIcall started");
 
@@ -244,6 +244,7 @@ app.get('/graphFinanceAPIcall', function (req, res) {
   //console.log("[LOG] /graphFinanceAPIcall started");
   // searches by both symbol and security
 
+
   var jsonReponse;
   var request = new XMLHttpRequest();
   var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=' + user_search_stock_ticker + '&apikey=KVZEQ9M5DWDHJN4C&format=json&callback=?&origin=*';
@@ -257,7 +258,6 @@ app.get('/graphFinanceAPIcall', function (req, res) {
   request.send();
 
 });
-
 
 app.get('/facebookAPIcall', function (req, res) {
   //console.log("[LOG] /facebookAPIcall started");
