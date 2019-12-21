@@ -97,7 +97,7 @@ app.post('/search', (req, res) => {
     var request2 = new XMLHttpRequest();
     var url2 = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=' + user_search + '&apikey=CQAKNU60Z9IF3RJ9&format=json&callback=?&origin=*';
     request2.responseType = 'json';
-    request2.open('GET', url2, true);
+    request2.open('GET', url2, false);
     request2.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     request2.onload = function () {
 
@@ -132,7 +132,7 @@ app.post('/search', (req, res) => {
     var request2 = new XMLHttpRequest();
     var url2 = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=' + user_search + '&apikey=CQAKNU60Z9IF3RJ9&format=json&callback=?&origin=*';
     request2.responseType = 'json';
-    request2.open('GET', url2, true);
+    request2.open('GET', url2, false);
     request2.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     request2.onload = function () {
       jsonReponse2 = request2.responseText;
@@ -169,7 +169,7 @@ app.get('/wikiAPIcall', function (req, res) {
   var request = new XMLHttpRequest();
   var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search="' + user_search + '&format=json&callback=?&origin=*';
   request.responseType = 'json';
-  request.open('GET', url, true);
+  request.open('GET', url, false);
   request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   request.onload = function () {
     jsonReponse = request.responseText;
